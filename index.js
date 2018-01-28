@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 
+const User = require("./models/user");
+
 mongoose.connect(keys.mongoURI);
 
 const app = express();
