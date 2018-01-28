@@ -3,14 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "proxy": {
-    "/": {
-      "target": "http://localhoat:5000"
-    },
     "/users": {
-      "target": "http://localhoat:5000"
+      "target": "http://localhost:5000"
     },
-    "/users/*": {
-      "target": "http://localhoat:5000"
+    "/users/new": {
+      "target": "http://localhost:5000/users"
     }
   },
   "dependencies": {

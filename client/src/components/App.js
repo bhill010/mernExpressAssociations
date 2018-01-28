@@ -30,6 +30,7 @@ class App extends Component {
       .then((response) => {
         let users = response.data;
         let usersArray = [];
+        // console.log(response);
         users.forEach(user => {
           usersArray.push(user);
         });
