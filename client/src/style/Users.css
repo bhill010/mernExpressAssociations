@@ -1,0 +1,23 @@
+.users__list-item {
+  list-style: none;
+  margin: 5px;
+  flex-basis: 80%;
+}
+
+.list-group-item-container {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+}
+
+.btn-flex {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  margin: 3px;
+}
+
+.users-header {
+  display: flex;
+  justify-content: center;
+}

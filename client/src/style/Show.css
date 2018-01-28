@@ -1,0 +1,22 @@
+.show-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.show-btn__div {
+  flex-basis: 30%;
+  margin: 5px;
+}
+
+.show-link {
+  width: 100%;
+}
+
+.show-info {
+  background-color: #e1dfdf;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px #cfcfcf;
+}
