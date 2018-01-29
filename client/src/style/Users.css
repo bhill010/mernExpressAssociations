@@ -10,6 +10,11 @@
   align-items: center;
 }
 
+.user__number {
+  flex-basis: 30%;
+  background-color: #d5d5d5;
+}
+
 .btn-flex {
   display: flex;
   align-items: center;

@@ -13,7 +13,7 @@ class Users extends Component {
           { this.props.users.map((user, idx) => {
             return (
               <div className="list-group-item-container" key={user._id}>
-                <li className="list-group-item users__list-item">User {idx}:</li>
+                <li className="list-group-item users__list-item user__number">User {idx}</li>
                 <li className="list-group-item users__list-item">{user.username}</li>
                 <div>
                   <Link className="btn btn-info btn-flex" to={`/users/${user._id}`}>SHOW</Link>
