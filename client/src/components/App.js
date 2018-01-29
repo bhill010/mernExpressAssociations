@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
 import axios from 'axios';
 
 import Users from './Users';
@@ -9,7 +11,6 @@ import Edit from './Edit'
 import Header from './Header';
 
 import '../style/App.css';
-
 
 class App extends Component {
   constructor(props) {
@@ -92,4 +93,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, actions)(App);
