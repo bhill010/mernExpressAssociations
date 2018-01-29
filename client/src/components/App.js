@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../actions'
+import { fetchUsers } from '../actions'
 import axios from 'axios';
 
 import Users from './Users';
@@ -16,44 +16,31 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.postPerson = this.postPerson.bind(this);
-    this.fetchUsers = this.fetchUsers.bind(this);
-    this.deletePerson = this.deletePerson.bind(this);
+    // this.postPerson = this.postPerson.bind(this);
+    // this.fetchUsers = this.fetchUsers.bind(this);
+    // this.deletePerson = this.deletePerson.bind(this);
   }
-  state = { users: [] }
+  // state = { users: [] }
 
   componentDidMount() {
-    this.fetchUsers();
+    this.props.fetchUsers();
   }
 
-  fetchUsers() {
-    axios.get('/users')
-      .then((response) => {
-        let users = response.data;
-        let usersArray = [];
-        // console.log(response);
-        users.forEach(user => {
-          usersArray.push(user);
-        });
-        this.setState({ users: usersArray })
-      });
-  }
+  // postPerson(response) {
+  //   let newUser = response.data;
+  //   let currentUsers = this.state.users;
+  //   currentUsers.push(newUser);
+  //
+  //   this.setState({ users: currentUsers })
+  // }
 
-  postPerson(response) {
-    let newUser = response.data;
-    let currentUsers = this.state.users;
-    currentUsers.push(newUser);
-
-    this.setState({ users: currentUsers })
-  }
-
-  deletePerson(id) {
-    axios.delete(`/users/${id}`)
-      .then((response) => {
-        console.log("Deleted user:", response);
-        this.fetchUsers();
-      })
-  }
+  // deletePerson(id) {
+  //   axios.delete(`/users/${id}`)
+  //     .then((response) => {
+  //       console.log("Deleted user:", response);
+  //       this.fetchUsers();
+  //     })
+  // }
 
   render() {
     return (
@@ -68,22 +55,20 @@ class App extends Component {
             <Switch>
               <Route
                 exact path="/users"
-                render={(props) => <Users {...props}
-                                    users={this.state.users}
-                                    deletePerson={this.deletePerson}
-                                  />}
+                component={Users}
               />
               <Route
                 exact path="/users/new"
-                render={(props) => <New {...props} postState={this.postPerson}/>}
+                component={New}
+                />
               />
               <Route
                 path="/users/:id/edit"
-                render={(props) => <Edit {...props} fetchUsers={this.fetchUsers}/>}
+                component={Edit}
               />
               <Route
                 path="/users/:id"
-                render={(props) => <Show {...props} deletePerson={this.deletePerson}/>}
+                component={Show}
               />
             </Switch>
           </div>
@@ -93,4 +78,8 @@ class App extends Component {
   }
 }
 
-export default connect(null, actions)(App);
+function mapStateToProps(state) {
+  return { users: state.users }
+}
+
+export default connect(mapStateToProps, { fetchUsers })(App);

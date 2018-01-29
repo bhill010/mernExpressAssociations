@@ -25,3 +25,30 @@ export const fetchUser = (id) => {
     });
   }
 }
+
+export const createUser = (username) => {
+  axios.post('/users', { username })
+    .then((response) => {
+      dispatch({ type: CREATE_USER, payload: response.data })
+    })
+    .then(() => {
+      this.props.history.push('/')
+    })
+}
+
+export const deleteUser = (id) => {
+  axios.delete(`/users/${id}`)
+    .then((response) => {
+      fetchUsers();
+    })
+}
+
+export const updateUser = (id, username) => {
+  axios.put(`/users/${id}`, { username })
+    .then((response) => {
+      fetchUsers();
+    })
+    .then(() => {
+      this.props.history.push('/')
+    })
+}

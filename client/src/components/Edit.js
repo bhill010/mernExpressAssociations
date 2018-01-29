@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { updateUser } from '../actions';
 
 import "../style/Edit.css";
 import "../style/App.css";
@@ -10,16 +11,14 @@ class Edit extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = {
-      username: ""
-    }
   }
 
   componentDidMount() {
     var full_url = document.URL;
     var url_array = full_url.split('/');
     var last_segment = url_array[url_array.length-2];
+
+    this.props.updateUser(last_segment);
 
     axios.get(`/users/${last_segment}`)
           .then((response) => {
@@ -75,4 +74,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default connect(mapStateToProps, { updateUser })(Edit);
