@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { fetchUser } from '../actions';
+import { connect } from 'react-redux';
+
 
 import "../style/Show.css";
 
 class Show extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      username: "",
-      id: ""
-    }
   }
 
   componentDidMount() {
@@ -20,13 +18,7 @@ class Show extends Component {
     var url_array = full_url.split('/');
     var last_segment = url_array[url_array.length-1];
 
-    axios.get(`/users/${last_segment}`)
-         .then(response => {
-           let username = response.data.username;
-           let id = response.data._id;
-
-           this.setState({ username: username, id: id});
-         });
+    this.props.fetchUser(last_segment);
   }
 
   render() {
@@ -56,4 +48,8 @@ class Show extends Component {
 
 }
 
-export default Show;
+function mapStateToProps(state) {
+  return { users: state.users }
+}
+
+export default connect(mapStateToProps, { fetchUser })(Show);

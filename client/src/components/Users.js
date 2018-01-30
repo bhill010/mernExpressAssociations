@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../style/Users.css';
+import _ from 'lodash';
+import { fetchUsers, deleteUser } from '../actions';
+import { connect } from 'react-redux';
+
 
 import '../style/Users.css';
 
@@ -10,7 +13,7 @@ class Users extends Component {
       <div>
         <h1 className="users-header">Users</h1>
         <ul className="list-group">
-          { this.props.users.map((user, idx) => {
+          { _.map(this.props.users, (user, idx) => {
             return (
               <div className="list-group-item-container" key={user._id}>
                 <li className="list-group-item users__list-item user__number">User {idx}</li>
@@ -19,7 +22,7 @@ class Users extends Component {
                   <Link className="btn btn-info btn-flex" to={`/users/${user._id}`}>SHOW</Link>
                 </div>
                 <div>
-                  <button className="btn btn-danger btn-flex" onClick={(e) => { e.preventDefault(); this.props.deletePerson(user._id)} }>
+                  <button className="btn btn-danger btn-flex" onClick={(e) => { e.preventDefault(); this.props.deleteUser(user._id)} }>
                     DELETE
                   </button>
                 </div>
@@ -35,4 +38,8 @@ class Users extends Component {
   }
 }
 
-export default Users;
+function mapStateToProps(state) {
+  return { users: state.users }
+}
+
+export default connect(mapStateToProps, { fetchUsers, deleteUser })(Users);

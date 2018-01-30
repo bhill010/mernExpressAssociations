@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { updateUser } from '../actions';
+import { connect } from 'react-redux';
+
 
 import "../style/Edit.css";
 import "../style/App.css";
@@ -72,6 +74,10 @@ class Edit extends Component {
       </div>
     )
   }
+}
+
+function mapStateToProps(state) {
+  return { users: state.users }
 }
 
 export default connect(mapStateToProps, { updateUser })(Edit);

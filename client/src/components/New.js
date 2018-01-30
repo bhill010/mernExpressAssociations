@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createUser } from '../actions';
+
 
 import "../style/New.css";
 import "../style/App.css";
@@ -10,29 +13,13 @@ class New extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = {
-      username: ""
-    }
-  }
-
-  onChange = (event) => {
-    const state = this.state;
-    state[event.target.name] = event.target.value;
-    this.setState(state)
   }
 
   onSubmit(event) {
     event.preventDefault();
     const username = this.state.username;
 
-    axios.post('/users', { username })
-          .then((response) => {
-            this.props.postState(response)
-          })
-          .then(() => {
-            this.props.history.push('/')
-          })
+    this.props.fetchUser(event.target.value)
   }
   render() {
     return (
@@ -43,8 +30,7 @@ class New extends Component {
             type="text"
             name="username"
             placeholder="name"
-            value={this.state.username}
-            onChange={this.onChange}/>
+            />
           <input className="btn btn-primary form__submit" type="submit"/>
         </form>
         <div>
@@ -56,4 +42,8 @@ class New extends Component {
 
 }
 
-export default New;
+function mapStateToProps(state) {
+  return { users: state.users }
+}
+
+export default connect(mapStateToProps, { createUser })(New);
