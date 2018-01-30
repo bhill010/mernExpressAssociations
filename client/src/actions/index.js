@@ -20,6 +20,7 @@ export const fetchUsers = () => {
 }
 
 export const fetchUser = (id) => {
+  console.log("fetch user action");
   return dispatch => {
     axios.get(`/users/${id}`)
       .then((response) => {
@@ -31,11 +32,11 @@ export const fetchUser = (id) => {
 }
 
 export const createUser = (username) => {
-  console.log("action username", username);
+  // console.log("action username", username);
   return dispatch => {
     axios.post('/users', { username })
       .then((response) => {
-        console.log("create user response: ", response);
+        // console.log("create user response: ", response);
         dispatch({ type: CREATE_USER, payload: response.data })
       })
   }
