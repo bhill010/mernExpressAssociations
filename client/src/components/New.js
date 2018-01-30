@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createUser } from '../actions';
+import { createUser, fetchUsers } from '../actions';
 
 
 import "../style/New.css";
@@ -19,7 +19,8 @@ class New extends Component {
     event.preventDefault();
     // const username = this.state.username;
 
-    this.props.createUser(event.target.querySelector('.form__input').value)
+    this.props.createUser(event.target.querySelector('.form__input').value);
+    this.props.fetchUsers();
     this.props.history.push('/')
   }
   render() {
@@ -47,4 +48,4 @@ function mapStateToProps(state) {
   return { users: state.users }
 }
 
-export default connect(mapStateToProps, { createUser })(New);
+export default connect(mapStateToProps, { createUser, fetchUsers })(New);

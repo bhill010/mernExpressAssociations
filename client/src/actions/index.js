@@ -7,10 +7,12 @@ import {
   UPDATE_USER } from "./types";
 
 export const fetchUsers = () => {
+  console.log("fetch users dispatching");
   return dispatch => {
     axios.get('/users')
       .then((response) => {
         let users = response.data;
+        console.log("fetch users response: ", users);
 
         dispatch({ type: FETCH_USERS, payload: users });
       });
@@ -33,6 +35,7 @@ export const createUser = (username) => {
   return dispatch => {
     axios.post('/users', { username })
       .then((response) => {
+        console.log("create user response: ", response);
         dispatch({ type: CREATE_USER, payload: response.data })
       })
   }
