@@ -17,9 +17,10 @@ class New extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const username = this.state.username;
+    // const username = this.state.username;
 
-    this.props.fetchUser(event.target.value)
+    this.props.createUser(event.target.querySelector('.form__input').value)
+    this.props.history.push('/')
   }
   render() {
     return (

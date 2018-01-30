@@ -29,13 +29,11 @@ export const fetchUser = (id) => {
 }
 
 export const createUser = (username) => {
+  console.log("action username", username);
   return dispatch => {
     axios.post('/users', { username })
       .then((response) => {
         dispatch({ type: CREATE_USER, payload: response.data })
-      })
-      .then(() => {
-        this.props.history.push('/')
       })
   }
 }
