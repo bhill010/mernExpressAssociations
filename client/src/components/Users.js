@@ -14,7 +14,6 @@ class Users extends Component {
         <h1 className="users-header">Users</h1>
         <ul className="list-group">
           { _.map(this.props.users, (user, idx) => {
-            console.log("users to render:", this.props.users);
             return (
               <div className="list-group-item-container" key={user._id}>
                 <li className="list-group-item users__list-item user__number">User {idx}</li>
