@@ -1,3 +1,7 @@
-module.exports = {
-  mongoURI: 'mongodb://bhill010:monkey06@ds117858.mlab.com:17858/mern-express-redux'
+if (process.env.NODE_ENV === "production") {
+  // we are in production - return the prod set of keys
+  module.exports = require('./prod');
+} else {
+  // we are in development - return the dev keys
+  module.exports = require('./dev');
 }
