@@ -23,7 +23,7 @@ class Users extends Component {
                   <Link className="btn btn-info btn-flex" to={`/users/${user._id}`}>SHOW</Link>
                 </div>
                 <div>
-                  <button className="btn btn-danger btn-flex" onClick={(e) => { e.preventDefault(); this.props.deleteUser(user._id)} }>
+                  <button className="btn btn-danger btn-flex" onClick={(e) => { e.preventDefault(); this.props.deleteUser(user._id); this.props.fetchUsers(); this.props.history.push('/') } }>
                     DELETE
                   </button>
                 </div>

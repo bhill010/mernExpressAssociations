@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { fetchUser } from '../actions';
+import { fetchUser, deleteUser, fetchUsers } from '../actions';
 import { connect } from 'react-redux';
 
 
@@ -36,7 +36,7 @@ class Show extends Component {
             <Link className="btn btn-info show-link" to={`/users/${this.props.users._id}/edit`}>PUT</Link>
           </div>
           <div className="show-btn__div">
-            <button className="btn btn-danger show-link" onClick={(e) => { e.preventDefault(); this.props.deletePerson(this.props.users._id); this.props.history.push('/')}}>
+            <button className="btn btn-danger show-link" onClick={(e) => { e.preventDefault(); this.props.deleteUser(this.props.users._id); this.props.fetchUsers(); this.props.history.push('/')}}>
               DELETE
             </button>
           </div>
@@ -54,4 +54,4 @@ function mapStateToProps(state) {
   return { users: state.users }
 }
 
-export default connect(mapStateToProps, { fetchUser })(Show);
+export default connect(mapStateToProps, { fetchUser, fetchUsers, deleteUser })(Show);

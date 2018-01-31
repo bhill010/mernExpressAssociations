@@ -43,10 +43,13 @@ export const createUser = (username) => {
 }
 
 export const deleteUser = (id) => {
-  axios.delete(`/users/${id}`)
-    .then((response) => {
-      fetchUsers();
-    })
+  return dispatch => {
+    axios.delete(`/users/${id}`)
+      .then((response) => {
+        dispatch({ type: DELETE_USER, payload: response.data })
+      })
+  }
+
 }
 
 export const updateUser = (id, username, cb = null) => {
