@@ -16,8 +16,11 @@ export default function(state = defaultState, action) {
     case FETCH_USERS:
       return _.merge({}, action.payload);
     case FETCH_USER:
-      console.log("fetch user reducer");
-      return { ...state, [ action.payload.data._id ]: action.payload.data }
+      console.log("fetch user reducer:", action.payload);
+      let newState = _.merge({}, action.payload);
+      console.log("fetch user returned state:", newState);
+      return newState
+      // return { ...state, [ action.payload._id ]: action.payload }
     case DELETE_USER:
       return _.omit(state, action.payload);
     case CREATE_USER:

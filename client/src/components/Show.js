@@ -23,20 +23,20 @@ class Show extends Component {
   }
 
   render() {
-    console.log("Show state:", this.state);
-    if (!this.state) {
+    console.log("Show state:", this.props.users);
+    if (!this.props.users) {
       return <div>Loading</div>
     }
     return (
       <div>
-        <h2>Profile page for: {this.state.username}</h2>
-        <p className="input-group-text show-info">User ID: {this.state.id}</p>
+        <h2>Profile page for: {this.props.users.username}</h2>
+        <p className="input-group-text show-info">User ID: {this.props.users._id}</p>
         <div className="show-btn-container">
           <div className="show-btn__div">
-            <Link className="btn btn-info show-link" to={`/users/${this.state.id}/edit`}>PUT</Link>
+            <Link className="btn btn-info show-link" to={`/users/${this.props.users._id}/edit`}>PUT</Link>
           </div>
           <div className="show-btn__div">
-            <button className="btn btn-danger show-link" onClick={(e) => { e.preventDefault(); this.props.deletePerson(this.state.id); this.props.history.push('/')}}>
+            <button className="btn btn-danger show-link" onClick={(e) => { e.preventDefault(); this.props.deletePerson(this.props.users._id); this.props.history.push('/')}}>
               DELETE
             </button>
           </div>
