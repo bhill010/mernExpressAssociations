@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { updateUser } from '../actions';
+import { updateUser, fetchUsers } from '../actions';
 import { connect } from 'react-redux';
 
 
@@ -20,21 +20,21 @@ class Edit extends Component {
     var url_array = full_url.split('/');
     var last_segment = url_array[url_array.length-2];
 
-    this.props.updateUser(last_segment);
+    // this.props.updateUser(last_segment);
 
-    axios.get(`/users/${last_segment}`)
-          .then((response) => {
-            let username = response.data.username;
-
-            this.setState({ username: username });
-          })
+    // axios.get(`/users/${last_segment}`)
+    //       .then((response) => {
+    //         let username = response.data.username;
+    //
+    //         this.setState({ username: username });
+    //       })
   }
 
-  onChange = (event) => {
-    const state = this.state;
-    state[event.target.name] = event.target.value;
-    this.setState(state)
-  }
+  // onChange = (event) => {
+  //   const state = this.state;
+  //   state[event.target.name] = event.target.value;
+  //   this.setState(state)
+  // }
 
   onSubmit(event) {
     event.preventDefault();
@@ -42,17 +42,20 @@ class Edit extends Component {
     var url_array = full_url.split('/');
     var last_segment = url_array[url_array.length-2];
 
-    const username = this.state.username;
-    console.log("new username", username);
-
-    axios.put(`/users/${last_segment}`, { username })
-          .then((response) => {
-            console.log(response);
-            this.props.fetchUsers();
-          })
-          .then(() => {
-            this.props.history.push('/')
-          })
+    // const username = this.state.username;
+    // console.log("new username", username);
+    this.props.updateUser(last_segment, event.target.querySelector('.form__input').value);
+    // this.props.updateUser(last_segment);
+    this.props.fetchUsers();
+    this.props.history.push('/')
+    // axios.put(`/users/${last_segment}`, { username })
+    //       .then((response) => {
+    //         console.log(response);
+    //         this.props.fetchUsers();
+    //       })
+    //       .then(() => {
+    //         this.props.history.push('/')
+    //       })
   }
 
   render() {
@@ -64,8 +67,7 @@ class Edit extends Component {
             type="text"
             name="username"
             placeholder="name"
-            value={this.state.username}
-            onChange={this.onChange}/>
+            />
           <input className="btn btn-primary form__submit" type="submit"/>
         </form>
         <div>
@@ -80,4 +82,4 @@ function mapStateToProps(state) {
   return { users: state.users }
 }
 
-export default connect(mapStateToProps, { updateUser })(Edit);
+export default connect(mapStateToProps, { updateUser, fetchUsers })(Edit);

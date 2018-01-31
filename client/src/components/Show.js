@@ -18,12 +18,12 @@ class Show extends Component {
     var url_array = full_url.split('/');
     var last_segment = url_array[url_array.length-1];
 
-    console.log("show component mounting");
+    // console.log("show component mounting");
     this.props.fetchUser(last_segment);
   }
 
   render() {
-    console.log("Show state:", this.props.users);
+    // console.log("Show state:", this.props.users);
     if (!this.props.users) {
       return <div>Loading</div>
     }

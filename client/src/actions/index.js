@@ -49,12 +49,14 @@ export const deleteUser = (id) => {
     })
 }
 
-export const updateUser = (id, username) => {
-  axios.put(`/users/${id}`, { username })
-    .then((response) => {
-      fetchUsers();
-    })
-    .then(() => {
-      this.props.history.push('/')
-    })
+export const updateUser = (id, username, cb = null) => {
+  return dispatch => {
+    axios.put(`/users/${id}`, { username })
+      .then((response) => {
+        dispatch({ type: UPDATE_USER, payload: response.data })
+      })
+  }
+  // return dispatch => {
+  //   axios.put(`/users/${id}`, { username })
+  // }
 }
