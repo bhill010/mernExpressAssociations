@@ -7,13 +7,25 @@ const LocalStrategy = require("passport-local")
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const User = require("./models/user");
+const Credential = require("./models/credential");
 
 mongoose.connect(keys.mongoURI);
 
 const app = express();
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(require("express-session")({
+  secret: "Cats and dogs",
+  resave: false,
+  saveUninitialized: false
+}));
+
+passport.serializeUser(Credential.serializeUser());
+passport.deserializeUser(Credential.deserializeUser());
 
 require('./routes/userRoutes')(app);
+require('./routes/credentialRoutes')(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static('client/build'));
