@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions'
-import axios from 'axios';
 
 import Users from './Users';
 import Show from './Show';
 import New from './New';
 import Edit from './Edit'
 import Header from './Header';
+import Register from './Register';
 
 import '../style/App.css';
 
@@ -48,11 +48,16 @@ class App extends Component {
         <Header />
         <BrowserRouter>
           <div className="route-container">
+
             <Route
               exact path="/"
               render={() => <Redirect to="/users" />}
             />
             <Switch>
+              <Route
+                exact path="/users/register"
+                component={Register}
+              />
               <Route
                 exact path="/users"
                 component={Users}

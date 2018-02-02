@@ -6,13 +6,15 @@ const passport = require("passport");
 
 
 module.exports = (app) => {
-  app.post("/register", function(req, res) {
+  app.post("/api/register", function(req, res) {
+    console.log("req:", req.body);
     Credential.register(new Credential({ username: req.body.username}), req.body.password, function(err, credential){
       if(err) {
         console.log(err);
+        // return;
       }
       passport.authenticate("local")(req, res, function(){
-        res.send("Success register")
+        console.log("Success register")
         res.send(credential)
       })
     })

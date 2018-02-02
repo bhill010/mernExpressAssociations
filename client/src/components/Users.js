@@ -3,19 +3,22 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { fetchUsers, deleteUser } from '../actions';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 
 import '../style/Users.css';
 
 class Users extends Component {
+
   render() {
     return (
       <div>
         <h1 className="users-header">Users</h1>
         <ul className="list-group">
           { _.map(this.props.users, (user, idx) => {
+            console.log(user);
             return (
-              <div className="list-group-item-container" key={user._id}>
+              <div className="list-group-item-container" key={idx}>
                 <li className="list-group-item users__list-item user__number">User {idx}</li>
                 <li className="list-group-item users__list-item">{user.username}</li>
                 <div>
@@ -32,6 +35,7 @@ class Users extends Component {
         </ul>
         <div>
           <Link className="btn btn-success btn-bottom" to="/users/new">CREATE</Link>
+          <Link className="btn btn-success btn-bottom" to="/users/register">REGISTER</Link>
         </div>
       </div>
     )

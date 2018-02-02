@@ -8,6 +8,9 @@
     },
     "/users/new": {
       "target": "http://localhost:5000/users"
+    },
+    "/api/register": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {
