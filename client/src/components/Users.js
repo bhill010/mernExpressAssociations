@@ -35,7 +35,6 @@ class Users extends Component {
         </ul>
         <div>
           <Link className="btn btn-success btn-bottom" to="/users/new">CREATE</Link>
-          <Link className="btn btn-success btn-bottom" to="/users/register">REGISTER</Link>
         </div>
       </div>
     )

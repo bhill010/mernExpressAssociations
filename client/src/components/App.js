@@ -45,10 +45,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
         <BrowserRouter>
           <div className="route-container">
-
+            <Header />
             <Route
               exact path="/"
               render={() => <Redirect to="/users" />}

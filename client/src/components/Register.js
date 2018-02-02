@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 class Register extends Component {
@@ -20,7 +21,12 @@ class Register extends Component {
 
   render() {
     return (
-      <button onClick={this.register}>Test Regiser</button>
+      <div>
+        <button
+          className="btn btn-info btn-flex"
+          onClick={this.register}>Test Register</button>
+        <Link className="btn btn-success" to="/users">Back to /users</Link>
+      </div>
     )
   }
 }
