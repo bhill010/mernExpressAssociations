@@ -11,6 +11,9 @@
     },
     "/api/register": {
       "target": "http://localhost:5000"
+    },
+    "/api/login": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

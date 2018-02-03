@@ -49,7 +49,7 @@ export default function(state = defaultState, action) {
         }
       }
       // newState[action.payload._id] = action.payload;
-      console.log("update state:", newState);
+      // console.log("update state:", newState);
       return newState;
     default:
       return state;

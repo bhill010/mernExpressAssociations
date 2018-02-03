@@ -9,6 +9,7 @@ import New from './New';
 import Edit from './Edit'
 import Header from './Header';
 import Register from './Register';
+import Login from './Login';
 
 import '../style/App.css';
 
@@ -54,8 +55,12 @@ class App extends Component {
             />
             <Switch>
               <Route
-                exact path="/users/register"
+                exact path="/api/register"
                 component={Register}
+              />
+              <Route
+                exact path="/api/login"
+                component={Login}
               />
               <Route
                 exact path="/users"

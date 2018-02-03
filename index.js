@@ -13,16 +13,27 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 app.use(bodyParser.json());
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.use(require("express-session")({
   secret: "Cats and dogs",
   resave: false,
   saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-passport.serializeUser(Credential.serializeUser());
-passport.deserializeUser(Credential.deserializeUser());
+
+passport.use(new LocalStrategy(Credential.authenticate()));
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  Credential.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+// passport.serializeUser(Credential.serializeUser());
+// passport.deserializeUser(Credential.deserializeUser());
 
 require('./routes/userRoutes')(app);
 require('./routes/credentialRoutes')(app);
