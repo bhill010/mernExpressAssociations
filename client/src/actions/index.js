@@ -4,7 +4,10 @@ import {
   FETCH_USERS,
   DELETE_USER,
   CREATE_USER,
-  UPDATE_USER } from "./types";
+  UPDATE_USER,
+  REGISTER,
+  LOGIN,
+  LOGOUT } from "./types";
 
 export const fetchUsers = () => {
   return dispatch => {
@@ -51,6 +54,33 @@ export const updateUser = (id, username, cb = null) => {
     axios.put(`/users/${id}`, { username })
       .then((response) => {
         dispatch({ type: UPDATE_USER, payload: response.data })
+      })
+  }
+}
+
+export const register = (username, password) => {
+  return dispatch => {
+    axios.post('/api/register', { username, password})
+      .then((response) => {
+        dispatch({ type: REGISTER, payload: response.data })
+      })
+  }
+}
+
+export const login = (username, password) => {
+  return dispatch => {
+    axios.post('/api/login', { username, password })
+      .then((response) => {
+        dispatch({ type: LOGIN, payload: response.data })
+      })
+  }
+}
+
+export const logout = () => {
+  return dispatch => {
+    axios.get('/api/logout')
+      .then((response) => {
+        dispatch({ type: LOGOUT, payload: response.data })
       })
   }
 }
