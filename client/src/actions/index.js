@@ -76,15 +76,18 @@ export const register = (username, password, cb) => {
   }
 }
 
-export const login = (username, password) => {
+export const login = (username, password, cb) => {
   return dispatch => {
     axios.post('/api/login', { username, password })
       .then((response) => {
+        console.log("login response: ", response);
         dispatch({ type: LOGIN, payload: response.data })
+        cb('/users');
       })
-      .catch(() => {
-        console.log("login error!");
-        dispatch({ type: LOGIN_FAILED });
+      .catch((err) => {
+        console.log("login error: ", err.response.data);
+        dispatch({ type: LOGIN_FAILED, payload: err.response.data });
+        cb('/api/login');
       })
   }
 }

@@ -11,6 +11,7 @@ class Login extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.logout = this.logout.bind(this);
+    this.errorHandler = this.errorHandler.bind(this);
   }
 
   onSubmit(event) {
@@ -18,7 +19,9 @@ class Login extends Component {
     var username = event.target.querySelector('.form__username').value;
     var password = event.target.querySelector('.form__password').value;
 
-    this.props.login(username, password);
+    this.props.login(username, password, (redirectPath) => {
+      this.props.history.push(redirectPath)
+    });
     // var body = { username: "Test6", password: "Testing" }
     // axios.post('/api/login', body)
     //   .then((response) => {
@@ -34,9 +37,22 @@ class Login extends Component {
       })
   }
 
+  errorHandler() {
+    var error = "";
+    if (this.props.auth.errorMessage) {
+      console.log("there's an error!");
+      error = this.props.auth.errorMessage;
+    }
+
+    return error;
+  }
+
   render() {
+    console.log("register state: ", this.props.auth);
+    console.log("error handler: ", this.errorHandler());
     return (
       <div>
+        <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input
             className="form-control form__input form__username"
@@ -62,7 +78,7 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-  return { auth: state.username }
+  return { auth: state.auth }
 }
 
 export default connect(mapStateToProps, { login })(Login);

@@ -8,7 +8,7 @@ import { REGISTER,
 import _ from 'lodash';
 
 const defaultState = {
-  username: "",
+  user: {},
   loggedIn: false,
   errorMessage: ""
 }
@@ -17,13 +17,13 @@ export default function(state = defaultState, action) {
   Object.freeze(state);
   switch(action.type) {
     case REGISTER:
-      return _.merge({}, state, { loggedIn: true, username: action.payload })
+      return _.merge({}, state, { loggedIn: true, user: action.payload, errorMessage: "" })
     case REGISTER_FAILED:
-      return _.merge({}, state, { loggedIn: false, errorMessage: action.payload })
+      return _.merge({}, state, { loggedIn: false, username: {}, errorMessage: action.payload })
     case LOGIN:
-      return action.payload || false;
+      return _.merge({}, state, { loggedIn: true, user: action.payload, errorMessage: "" })
     case LOGIN_FAILED:
-    return _.merge({}, state, { loggedIn: false, errorMessage: "login failed" })
+      return _.merge({}, state, { loggedIn: false, user: {}, errorMessage: action.payload })
     case LOGOUT:
       return action.payload;
     default:

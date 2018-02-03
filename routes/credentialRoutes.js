@@ -24,13 +24,24 @@ module.exports = (app) => {
 
   app.post("/api/login", function(req, res, next) {
     passport.authenticate("local", function(err, credential, info) {
-      if (err) { return next(err); }
-      if (!credential) { res.send("not existing user")};
-      req.logIn(credential, function(err) {
-        if (err) { return next(err); }
-
-        res.send("login success")
-      })
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+        // return next(err);
+      } else if (!credential) {
+        res.status(401).send("not existing user")
+      } else {
+        req.logIn(credential, function(err) {
+          if (err) {
+            console.log(err);
+            res.status(500).send(err);
+            // return next(err);
+          } else {
+            console.log("Success login")
+            res.send(credential)
+          }
+        })
+      }
     })(req, res)
   });
 
