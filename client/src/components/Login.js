@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login } from '../actions';
 
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.login = this.login.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.logout = this.logout.bind(this);
   }
 
-  login(event) {
+  onSubmit(event) {
     event.preventDefault();
-    var body = { username: "Test6", password: "Testing" }
-    axios.post('/api/login', body)
-      .then((response) => {
-        console.log("Login Success!");
-      })
+    var username = event.target.querySelector('.form__username').value;
+    var password = event.target.querySelector('.form__password').value;
+
+    this.props.login(username, password);
+    // var body = { username: "Test6", password: "Testing" }
+    // axios.post('/api/login', body)
+    //   .then((response) => {
+    //     console.log("Login Success!");
+    //   })
   }
 
   logout(event) {
@@ -31,9 +37,21 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <button
-          className="btn btn-info btn-flex"
-          onClick={this.login}>Test Login</button>
+        <form className="form" onSubmit={this.onSubmit}>
+          <input
+            className="form-control form__input form__username"
+            type="text"
+            name="username"
+            placeholder="name"
+            />
+          <input
+            className="form-control form__input form__password"
+            type="text"
+            name="password"
+            placeholder="password"
+            />
+          <input className="btn btn-primary form__submit" type="submit"/>
+      </form>
         <button
           className="btn btn-info btn-flex"
           onClick={this.logout}>Test Logout</button>
@@ -43,4 +61,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return { auth: state.username }
+}
+
+export default connect(mapStateToProps, { login })(Login);
