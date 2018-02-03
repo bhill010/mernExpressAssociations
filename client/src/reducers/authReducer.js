@@ -19,7 +19,7 @@ export default function(state = defaultState, action) {
     case REGISTER:
       return _.merge({}, state, { loggedIn: true, username: action.payload })
     case REGISTER_FAILED:
-      return _.merge({}, state, { loggedIn: false, errorMessage: "register failed" })
+      return _.merge({}, state, { loggedIn: false, errorMessage: action.payload })
     case LOGIN:
       return action.payload || false;
     case LOGIN_FAILED:

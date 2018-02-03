@@ -41,7 +41,7 @@ class Register extends Component {
     console.log("register state: ", this.props.auth);
     return (
       <div>
-        <div>{this.props.auth.errorMessage}</div>
+        <div>{this.props.auth.errorMessage.message}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input
             className="form-control form__input form__username"

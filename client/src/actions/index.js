@@ -69,8 +69,8 @@ export const register = (username, password, cb) => {
         cb('/users');
       })
       .catch((err) => {
-        console.log("register error: ", err.response);
-        dispatch({ type: REGISTER_FAILED });
+        console.log("register error: ", err.response.data);
+        dispatch({ type: REGISTER_FAILED, payload: err.response.data });
         cb('/api/register')
       })
   }
