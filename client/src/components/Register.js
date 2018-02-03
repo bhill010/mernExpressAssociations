@@ -17,7 +17,9 @@ class Register extends Component {
     var username = event.target.querySelector('.form__username').value;
     var password = event.target.querySelector('.form__password').value;
 
-    this.props.register(username, password);
+    this.props.register(username, password, (redirectPath) => {
+      this.props.history.push(redirectPath)
+    });
     // var body = { username: "Test6", password: "Testing" }
     // axios.post('/api/register', body)
     //   .then((response) => {
@@ -60,7 +62,7 @@ class Register extends Component {
 }
 
 function mapStateToProps(state) {
-  return { auth: state.username }
+  return { auth: state }
 }
 
 export default connect(mapStateToProps, { register })(Register);

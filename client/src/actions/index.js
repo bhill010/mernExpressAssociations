@@ -6,7 +6,9 @@ import {
   CREATE_USER,
   UPDATE_USER,
   REGISTER,
+  REGISTER_FAILED,
   LOGIN,
+  LOGIN_FAILED,
   LOGOUT } from "./types";
 
 export const fetchUsers = () => {
@@ -58,11 +60,18 @@ export const updateUser = (id, username, cb = null) => {
   }
 }
 
-export const register = (username, password) => {
+export const register = (username, password, cb) => {
   return dispatch => {
     axios.post('/api/register', { username, password})
       .then((response) => {
-        dispatch({ type: REGISTER, payload: response.data })
+        console.log("register response: ", response);
+        dispatch({ type: REGISTER, payload: response.data });
+        cb('/users');
+      })
+      .catch(() => {
+        console.log("register error!");
+        dispatch({ type: REGISTER_FAILED });
+        cb('/api/register')
       })
   }
 }
@@ -72,6 +81,10 @@ export const login = (username, password) => {
     axios.post('/api/login', { username, password })
       .then((response) => {
         dispatch({ type: LOGIN, payload: response.data })
+      })
+      .catch(() => {
+        console.log("login error!");
+        dispatch({ type: LOGIN_FAILED });
       })
   }
 }
