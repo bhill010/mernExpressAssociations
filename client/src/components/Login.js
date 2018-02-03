@@ -8,6 +8,7 @@ class Login extends Component {
     super(props);
 
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   login(event) {
@@ -19,12 +20,23 @@ class Login extends Component {
       })
   }
 
+  logout(event) {
+    event.preventDefault();
+    axios.get('/api/logout')
+      .then(response => {
+        console.log("logged out successfully");
+      })
+  }
+
   render() {
     return (
       <div>
         <button
           className="btn btn-info btn-flex"
           onClick={this.login}>Test Login</button>
+        <button
+          className="btn btn-info btn-flex"
+          onClick={this.logout}>Test Logout</button>
         <Link className="btn btn-success" to="/users">Back to /users</Link>
       </div>
     )

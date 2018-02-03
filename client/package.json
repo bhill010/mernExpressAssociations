@@ -14,6 +14,9 @@
     },
     "/api/login": {
       "target": "http://localhost:5000"
+    },
+    "/api/logout": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

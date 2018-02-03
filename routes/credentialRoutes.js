@@ -33,6 +33,13 @@ module.exports = (app) => {
     })(req, res)
   });
 
+  app.get("/api/logout", function(req, res) {
+    req.logout();
+    res.redirect("/users");
+
+    // res.send("logged out")
+  })
+
   // app.post("/api/login", function(req, res, next) {
   //   console.log("login req:", req.body);
   //   passport.authenticate("local", function(err, credential, info) {
