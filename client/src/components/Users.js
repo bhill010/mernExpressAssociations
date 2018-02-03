@@ -11,6 +11,9 @@ import '../style/Users.css';
 class Users extends Component {
 
   render() {
+    if (!this.props.users) {
+      return <div>Loading</div>
+    }
     return (
       <div>
         <h1 className="users-header">Users</h1>

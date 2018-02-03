@@ -10,6 +10,7 @@ import Edit from './Edit'
 import Header from './Header';
 import Register from './Register';
 import Login from './Login';
+import PrivateRoute from './PrivateRoute';
 
 import '../style/App.css';
 
@@ -44,6 +45,7 @@ class App extends Component {
   // }
 
   render() {
+    console.log("App.js state: ", this.props.auth);
     return (
       <div className="App">
         <BrowserRouter>
@@ -75,7 +77,8 @@ class App extends Component {
                 path="/users/:id/edit"
                 component={Edit}
               />
-              <Route
+              <PrivateRoute
+                authed={this.props.auth.loggedIn}
                 path="/users/:id"
                 component={Show}
               />
@@ -88,7 +91,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users }
+  return { users: state.users, auth: state.auth }
 }
 
 export default connect(mapStateToProps, { fetchUsers })(App);

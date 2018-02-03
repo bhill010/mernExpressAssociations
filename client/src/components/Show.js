@@ -20,11 +20,30 @@ class Show extends Component {
 
     // console.log("show component mounting");
     this.props.fetchUser(last_segment);
+    this.showIndexReturn = this.showIndexReturn.bind(this);
+    this.deleteIndexReturn = this.deleteIndexReturn.bind(this);
+  }
+
+  deleteIndexReturn(event) {
+    event.preventDefault();
+    this.props.deleteUser(this.props.users._id);
+    this.props.fetchUsers();
+    this.props.history.push('/users')
+  }
+
+  showIndexReturn(event) {
+    event.preventDefault();
+    this.props.fetchUsers();
+    // this.props.history.push('/users');
+
+    setTimeout(() => {
+      this.props.history.push('/users');
+    }, 1000);
   }
 
   render() {
     // console.log("Show state:", this.props.users);
-    if (!this.props.users) {
+    if (!this.props.users || !this.props.users.username) {
       return <div>Loading</div>
     }
     return (
@@ -36,10 +55,15 @@ class Show extends Component {
             <Link className="btn btn-info show-link" to={`/users/${this.props.users._id}/edit`}>PUT</Link>
           </div>
           <div className="show-btn__div">
-            <button className="btn btn-danger show-link" onClick={(e) => { e.preventDefault(); this.props.deleteUser(this.props.users._id); this.props.fetchUsers(); this.props.history.push('/')}}>
+            <button className="btn btn-danger show-link" onClick={this.deleteIndexReturn}>
               DELETE
             </button>
           </div>
+        </div>
+        <div>
+          <button className="btn btn-success" onClick={this.showIndexReturn}>
+            TEST RETURN TO /USERS
+          </button>
         </div>
         <div>
           <Link className="btn btn-success btn-bottom" to="/">Return to /users</Link>
