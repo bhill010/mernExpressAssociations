@@ -38,8 +38,10 @@ class Register extends Component {
   // }
 
   render() {
+    console.log("register state: ", this.props.auth);
     return (
       <div>
+        <div>{this.props.auth.errorMessage}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input
             className="form-control form__input form__username"
@@ -62,7 +64,7 @@ class Register extends Component {
 }
 
 function mapStateToProps(state) {
-  return { auth: state }
+  return { auth: state.auth }
 }
 
 export default connect(mapStateToProps, { register })(Register);

@@ -5,7 +5,7 @@ export const UPDATE_USER = "update_user";
 export const DELETE_USER = "delte_user";
 
 export const REGISTER = "register";
-export const REGISTER_FAILED = "register";
+export const REGISTER_FAILED = "register_failed";
 export const LOGIN = "login";
-export const LOGIN_FAILED = "login";
+export const LOGIN_FAILED = "login_failed";
 export const LOGOUT = "logout";

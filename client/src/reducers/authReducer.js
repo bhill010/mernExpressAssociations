@@ -1,7 +1,7 @@
 import { REGISTER,
-         REGISTER_FAILED
+         REGISTER_FAILED,
          LOGIN,
-         LOGIN_FAILED
+         LOGIN_FAILED,
          LOGOUT
        } from '../actions/types';
 
@@ -10,7 +10,7 @@ import _ from 'lodash';
 const defaultState = {
   username: "",
   loggedIn: false,
-  errorMessage: null
+  errorMessage: ""
 }
 
 export default function(state = defaultState, action) {

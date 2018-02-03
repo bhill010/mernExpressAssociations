@@ -11,12 +11,13 @@ module.exports = (app) => {
     Credential.register(new Credential({ username: req.body.username}), req.body.password, function(err, credential){
       if(err) {
         console.log(err);
-        // return;
+        res.status(401).send(err)
+      } else {
+        passport.authenticate("local")(req, res, function(){
+          console.log("Success register")
+          res.send(credential)
+        })
       }
-      passport.authenticate("local")(req, res, function(){
-        console.log("Success register")
-        res.send(credential)
-      })
     })
   });
 
