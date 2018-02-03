@@ -10,6 +10,7 @@ class Register extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.errorHandler = this.errorHandler.bind(this);
   }
 
   onSubmit(event) {
@@ -37,11 +38,22 @@ class Register extends Component {
   //     })
   // }
 
+  errorHandler() {
+    var error = "";
+    if (this.props.auth.errorMessage.message) {
+      console.log("there's an error!");
+      error = this.props.auth.errorMessage.message;
+    }
+
+    return error;
+  }
+
   render() {
     console.log("register state: ", this.props.auth);
     return (
       <div>
-        <div>{this.props.auth.errorMessage.message}</div>
+        <h3>Register Page</h3>
+        <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input
             className="form-control form__input form__username"

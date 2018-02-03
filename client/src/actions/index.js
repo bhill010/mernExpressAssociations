@@ -92,11 +92,13 @@ export const login = (username, password, cb) => {
   }
 }
 
-export const logout = () => {
+export const logout = (cb) => {
   return dispatch => {
     axios.get('/api/logout')
       .then((response) => {
+        console.log("logout response: ", response);
         dispatch({ type: LOGOUT, payload: response.data })
+        cb('/api/register')
       })
   }
 }

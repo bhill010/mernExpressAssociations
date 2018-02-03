@@ -25,7 +25,7 @@ export default function(state = defaultState, action) {
     case LOGIN_FAILED:
       return _.merge({}, state, { loggedIn: false, user: {}, errorMessage: action.payload })
     case LOGOUT:
-      return action.payload;
+      return _.merge({}, state, defaultState)
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login } from '../actions';
+import { login, logout } from '../actions';
 
 
 class Login extends Component {
@@ -31,10 +31,13 @@ class Login extends Component {
 
   logout(event) {
     event.preventDefault();
-    axios.get('/api/logout')
-      .then(response => {
-        console.log("logged out successfully");
-      })
+    this.props.logout(redirectPath => {
+      this.props.history.push(redirectPath)
+    });
+    // axios.get('/api/logout')
+    //   .then(response => {
+    //     console.log("logged out successfully");
+    //   })
   }
 
   errorHandler() {
@@ -52,6 +55,7 @@ class Login extends Component {
     console.log("error handler: ", this.errorHandler());
     return (
       <div>
+        <h3>Logout Page</h3>
         <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input
@@ -81,4 +85,4 @@ function mapStateToProps(state) {
   return { auth: state.auth }
 }
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, logout })(Login);

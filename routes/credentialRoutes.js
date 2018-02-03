@@ -29,7 +29,7 @@ module.exports = (app) => {
         res.status(500).send(err);
         // return next(err);
       } else if (!credential) {
-        res.status(401).send("not existing user")
+        res.status(401).send("Not existing user")
       } else {
         req.logIn(credential, function(err) {
           if (err) {
