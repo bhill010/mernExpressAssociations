@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { createUser, fetchUsers } from '../actions';
-
+import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createUser, fetchUsers } from "../actions";
 
 import "../style/New.css";
 import "../style/App.css";
@@ -17,11 +16,10 @@ class New extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    // const username = this.state.username;
 
-    this.props.createUser(event.target.querySelector('.form__input').value);
+    this.props.createUser(event.target.querySelector(".form__input").value);
     this.props.fetchUsers();
-    this.props.history.push('/')
+    this.props.history.push("/");
   }
   render() {
     return (
@@ -32,20 +30,21 @@ class New extends Component {
             type="text"
             name="username"
             placeholder="name"
-            />
-          <input className="btn btn-primary form__submit" type="submit"/>
+          />
+          <input className="btn btn-primary form__submit" type="submit" />
         </form>
         <div>
-          <Link className="btn btn-success btn-bottom" to="/">Return to /users</Link>
+          <Link className="btn btn-success btn-bottom" to="/">
+            Return to /users
+          </Link>
         </div>
       </div>
-    )
+    );
   }
-
 }
 
 function mapStateToProps(state) {
-  return { users: state.users }
+  return { users: state.users };
 }
 
 export default connect(mapStateToProps, { createUser, fetchUsers })(New);

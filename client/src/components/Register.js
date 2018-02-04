@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { register } from '../actions';
-
+import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { register } from "../actions";
 
 class Register extends Component {
   constructor(props) {
@@ -15,33 +14,17 @@ class Register extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    var username = event.target.querySelector('.form__username').value;
-    var password = event.target.querySelector('.form__password').value;
+    var username = event.target.querySelector(".form__username").value;
+    var password = event.target.querySelector(".form__password").value;
 
-    this.props.register(username, password, (redirectPath) => {
-      this.props.history.push(redirectPath)
+    this.props.register(username, password, redirectPath => {
+      this.props.history.push(redirectPath);
     });
-    // var body = { username: "Test6", password: "Testing" }
-    // axios.post('/api/register', body)
-    //   .then((response) => {
-    //     console.log("Success!");
-    //   })
-
   }
-
-  // register(event) {
-  //   event.preventDefault();
-  //   var body = { username: "Test6", password: "Testing" }
-  //   axios.post('/api/register', body)
-  //     .then((response) => {
-  //       console.log("Success!");
-  //     })
-  // }
 
   errorHandler() {
     var error = "";
     if (this.props.auth.errorMessage.message) {
-      // console.log("there's an error!");
       error = this.props.auth.errorMessage.message;
     }
 
@@ -60,23 +43,25 @@ class Register extends Component {
             type="text"
             name="username"
             placeholder="name"
-            />
+          />
           <input
             className="form-control form__input form__password"
             type="text"
             name="password"
             placeholder="password"
-            />
-          <input className="btn btn-primary form__submit" type="submit"/>
-      </form>
-        <Link className="btn btn-success" to="/users">Back to /users</Link>
+          />
+          <input className="btn btn-primary form__submit" type="submit" />
+        </form>
+        <Link className="btn btn-success" to="/users">
+          Back to /users
+        </Link>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  return { auth: state.auth }
+  return { auth: state.auth };
 }
 
 export default connect(mapStateToProps, { register })(Register);
