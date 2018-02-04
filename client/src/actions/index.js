@@ -98,7 +98,7 @@ export const logout = (cb) => {
       .then((response) => {
         // console.log("logout response: ", response);
         dispatch({ type: LOGOUT, payload: response.data })
-        cb('/api/register')
+        cb('/users')
       })
   }
 }
