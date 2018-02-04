@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../actions";
+import { logout } from "../../actions";
 
-import "../style/Header.css";
+import "../../style/Header.css";
 
 class Header extends Component {
   constructor(props) {

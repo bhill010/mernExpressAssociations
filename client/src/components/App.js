@@ -3,14 +3,14 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUsers } from "../actions";
 
-import Users from "./Users";
-import Show from "./Show";
-import New from "./New";
-import Edit from "./Edit";
-import Header from "./Header";
-import Register from "./Register";
-import Login from "./Login";
-import PrivateRoute from "./PrivateRoute";
+import Users from "./Users/Users";
+import Show from "./Users/Show";
+import New from "./Users/New";
+import Edit from "./Users/Edit";
+import Header from "./Misc/Header";
+import Register from "./Credential/Register";
+import Login from "./Credential/Login";
+import PrivateRoute from "./Misc/PrivateRoute";
 
 import "../style/App.css";
 

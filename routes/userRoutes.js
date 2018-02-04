@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 var express = require("express");
 var router = express.Router();
 const User = require("../models/user");
+const Credential = require("../models/credential");
 
 module.exports = app => {
   // GET users
@@ -16,21 +17,44 @@ module.exports = app => {
   });
 
   // CREATE new user
-  app.post("/users", function(req, res, next) {
-    console.log(req);
-    const username = req.body.username;
-
-    const user = new User({
-      username: username
-    });
-
-    User.create(user, function(err, newUser) {
-      if (err) {
+  app.post("/credential/:id/users", function(req, res, next) {
+    Credential.findById(req.params.id, function(err, credential) {
+      if(err) {
         console.log(err);
       } else {
-        res.send(newUser);
+        const username = req.body.username;
+
+        const user = new User({
+          username: username
+        });
+
+        User.create(user, function(err, newUser) {
+          if (err) {
+            console.log(err);
+          } else {
+            credential.users.push(newUser);
+            credential.save();
+            res.send(credential);
+          }
+        });
       }
-    });
+    })
+
+
+    // console.log(req);
+    // const username = req.body.username;
+    //
+    // const user = new User({
+    //   username: username
+    // });
+    //
+    // User.create(user, function(err, newUser) {
+    //   if (err) {
+    //     console.log(err);
+    //   } else {
+    //     res.send(newUser);
+    //   }
+    // });
   });
 
   // SHOW a user

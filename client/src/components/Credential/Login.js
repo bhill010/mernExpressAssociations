@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { register } from "../actions";
+import { login, logout } from "../../actions";
 
-class Register extends Component {
+import axios from "axios";
+
+class Login extends Component {
   constructor(props) {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.logout = this.logout.bind(this);
     this.errorHandler = this.errorHandler.bind(this);
   }
 
@@ -17,25 +19,31 @@ class Register extends Component {
     var username = event.target.querySelector(".form__username").value;
     var password = event.target.querySelector(".form__password").value;
 
-    this.props.register(username, password, redirectPath => {
+    this.props.login(username, password, redirectPath => {
+      this.props.history.push(redirectPath);
+    });
+  }
+
+  logout(event) {
+    event.preventDefault();
+    this.props.logout(redirectPath => {
       this.props.history.push(redirectPath);
     });
   }
 
   errorHandler() {
     var error = "";
-    if (this.props.auth.errorMessage.message) {
-      error = this.props.auth.errorMessage.message;
+    if (this.props.auth.errorMessage) {
+      error = this.props.auth.errorMessage;
     }
 
     return error;
   }
 
   render() {
-    console.log("auth state: ", this.props.auth);
     return (
       <div>
-        <h3>Register Page</h3>
+        <h3>Login Page</h3>
         <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input
@@ -52,6 +60,9 @@ class Register extends Component {
           />
           <input className="btn btn-primary form__submit" type="submit" />
         </form>
+        <button className="btn btn-info btn-flex" onClick={this.logout}>
+          Test Logout
+        </button>
         <Link className="btn btn-success" to="/users">
           Back to /users
         </Link>
@@ -64,4 +75,4 @@ function mapStateToProps(state) {
   return { auth: state.auth };
 }
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { login, logout })(Login);

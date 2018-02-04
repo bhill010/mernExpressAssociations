@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
-import { fetchUsers, deleteUser } from "../actions";
+import { fetchUsers, deleteUser } from "../../actions";
 import { connect } from "react-redux";
 import axios from "axios";
 
-import "../style/Users.css";
+import "../../style/Users.css";
 
 class Users extends Component {
   constructor(props) {

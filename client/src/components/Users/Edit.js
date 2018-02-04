@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { updateUser, fetchUsers } from "../actions";
+import { updateUser, fetchUsers } from "../../actions";
 import { connect } from "react-redux";
 
-import "../style/Edit.css";
-import "../style/App.css";
+import "../../style/Edit.css";
+import "../../style/App.css";
 
 class Edit extends Component {
   constructor(props) {
