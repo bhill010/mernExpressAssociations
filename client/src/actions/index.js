@@ -64,12 +64,12 @@ export const register = (username, password, cb) => {
   return dispatch => {
     axios.post('/api/register', { username, password})
       .then((response) => {
-        console.log("register response: ", response);
+        // console.log("register response: ", response);
         dispatch({ type: REGISTER, payload: response.data });
         cb('/users');
       })
       .catch((err) => {
-        console.log("register error: ", err.response.data);
+        // console.log("register error: ", err.response.data);
         dispatch({ type: REGISTER_FAILED, payload: err.response.data });
         cb('/api/register')
       })
@@ -80,12 +80,12 @@ export const login = (username, password, cb) => {
   return dispatch => {
     axios.post('/api/login', { username, password })
       .then((response) => {
-        console.log("login response: ", response);
+        // console.log("login response: ", response);
         dispatch({ type: LOGIN, payload: response.data })
         cb('/users');
       })
       .catch((err) => {
-        console.log("login error: ", err.response.data);
+        // console.log("login error: ", err.response.data);
         dispatch({ type: LOGIN_FAILED, payload: err.response.data });
         cb('/api/login');
       })
@@ -96,7 +96,7 @@ export const logout = (cb) => {
   return dispatch => {
     axios.get('/api/logout')
       .then((response) => {
-        console.log("logout response: ", response);
+        // console.log("logout response: ", response);
         dispatch({ type: LOGOUT, payload: response.data })
         cb('/api/register')
       })

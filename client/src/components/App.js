@@ -45,7 +45,7 @@ class App extends Component {
   // }
 
   render() {
-    console.log("App.js state: ", this.props.auth);
+    // console.log("App.js state: ", this.props.auth);
     return (
       <div className="App">
         <BrowserRouter>
@@ -68,12 +68,12 @@ class App extends Component {
                 exact path="/users"
                 component={Users}
               />
-              <Route
+              <PrivateRoute
                 exact path="/users/new"
                 component={New}
                 />
               />
-              <Route
+              <PrivateRoute
                 path="/users/:id/edit"
                 component={Edit}
               />

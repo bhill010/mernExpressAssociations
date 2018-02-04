@@ -43,7 +43,7 @@ class Login extends Component {
   errorHandler() {
     var error = "";
     if (this.props.auth.errorMessage) {
-      console.log("there's an error!");
+      // console.log("there's an error!");
       error = this.props.auth.errorMessage;
     }
 
@@ -51,11 +51,11 @@ class Login extends Component {
   }
 
   render() {
-    console.log("register state: ", this.props.auth);
-    console.log("error handler: ", this.errorHandler());
+    console.log("auth state: ", this.props.auth);
+    // console.log("error handler: ", this.errorHandler());
     return (
       <div>
-        <h3>Logout Page</h3>
+        <h3>Login Page</h3>
         <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input

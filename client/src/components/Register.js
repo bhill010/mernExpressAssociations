@@ -41,7 +41,7 @@ class Register extends Component {
   errorHandler() {
     var error = "";
     if (this.props.auth.errorMessage.message) {
-      console.log("there's an error!");
+      // console.log("there's an error!");
       error = this.props.auth.errorMessage.message;
     }
 
@@ -49,7 +49,7 @@ class Register extends Component {
   }
 
   render() {
-    console.log("register state: ", this.props.auth);
+    console.log("auth state: ", this.props.auth);
     return (
       <div>
         <h3>Register Page</h3>
