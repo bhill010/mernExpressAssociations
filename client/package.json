@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "proxy": {
-    "/users": {
+    "/api/users": {
       "target": "http://localhost:5000"
     },
-    "/users/new": {
-      "target": "http://localhost:5000/users"
+    "/api/users/new": {
+      "target": "http://localhost:5000/api/users"
     },
-    "/credential": {
+    "/api/credential": {
       "target": "http://localhost:5000"
     },
     "/api/register": {

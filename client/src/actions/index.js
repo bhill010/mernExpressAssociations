@@ -14,7 +14,7 @@ import {
 
 export const fetchUsers = () => {
   return dispatch => {
-    axios.get("/users").then(response => {
+    axios.get("/api/users").then(response => {
       let users = response.data;
       console.log("fetchusers action data: ", users);
       dispatch({ type: FETCH_USERS, payload: users });
@@ -24,7 +24,7 @@ export const fetchUsers = () => {
 
 export const fetchUser = id => {
   return dispatch => {
-    axios.get(`/users/${id}`).then(response => {
+    axios.get(`/api/users/${id}`).then(response => {
       let user = response.data;
 
       dispatch({ type: FETCH_USER, payload: user });
@@ -37,7 +37,7 @@ export const createUser = (username, id) => {
   console.log("username: ", username);
   console.log("id: ", id);
   return dispatch => {
-    axios.post(`/credential/${id}/users`, { username }).then(response => {
+    axios.post(`/api/credential/${id}/users`, { username }).then(response => {
       console.log("create user action data: ", response.data);
       dispatch({ type: CREATE_USER, payload: response.data });
     });
@@ -46,7 +46,7 @@ export const createUser = (username, id) => {
 
 export const deleteUser = (id, credentialID) => {
   return dispatch => {
-    axios.delete(`/credential/${credentialID}/users/${id}`).then(response => {
+    axios.delete(`/api/credential/${credentialID}/users/${id}`).then(response => {
       console.log("deleteusers action data: ", response.data);
       dispatch({ type: DELETE_USER, payload: response.data });
     });
@@ -55,7 +55,7 @@ export const deleteUser = (id, credentialID) => {
 
 export const updateUser = (id, username, cb = null) => {
   return dispatch => {
-    axios.put(`/users/${id}`, { username }).then(response => {
+    axios.put(`/api/users/${id}`, { username }).then(response => {
       dispatch({ type: UPDATE_USER, payload: response.data });
     });
   };

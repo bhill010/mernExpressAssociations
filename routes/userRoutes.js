@@ -6,7 +6,7 @@ const Credential = require("../models/credential");
 
 module.exports = app => {
   // GET users
-  app.get("/users", function(req, res, next) {
+  app.get("/api/users", function(req, res, next) {
     User.find({}, function(err, allUsers) {
       if (err) {
         console.log(err);
@@ -18,7 +18,7 @@ module.exports = app => {
   });
 
   // CREATE new user
-  app.post("/credential/:id/users", function(req, res, next) {
+  app.post("/api/credential/:id/users", function(req, res, next) {
     Credential.findById(req.params.id, function(err, credential) {
       if(err) {
         console.log(err);
@@ -60,7 +60,7 @@ module.exports = app => {
   });
 
   // SHOW a user
-  app.get("/users/:id", function(req, res) {
+  app.get("/api/users/:id", function(req, res) {
     User.findById(req.params.id, function(err, foundUser) {
       if (err) {
         res.redirect("/users");
@@ -71,7 +71,7 @@ module.exports = app => {
   });
 
   // EDIT a user
-  app.get("/users/:id/edit", function(req, res) {
+  app.get("/api/users/:id/edit", function(req, res) {
     User.findById(req.params.id, function(err, foundUser) {
       if (err) {
         res.redirect("/users");
@@ -82,7 +82,7 @@ module.exports = app => {
   });
 
   // UPDATE a user
-  app.put("/users/:id", function(req, res) {
+  app.put("/api/users/:id", function(req, res) {
     User.findByIdAndUpdate(
       req.params.id,
       req.body.username,
@@ -107,7 +107,7 @@ module.exports = app => {
   });
 
   // DELETE a user
-  app.delete("/credential/:id/users/:user_id", function(req, res) {
+  app.delete("/api/credential/:id/users/:user_id", function(req, res) {
     User.findByIdAndRemove(req.params.user_id, function(err, foundUser) {
       if (err) {
         res.redirect("/users");

@@ -5,6 +5,8 @@ const keys = require("./config/keys");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
+const expressSession = require("express-session");
+const MongoStore = require('connect-mongo')(expressSession);
 
 const User = require("./models/user");
 const Credential = require("./models/credential");
@@ -14,11 +16,11 @@ mongoose.connect(keys.mongoURI);
 const app = express();
 app.use(bodyParser.json());
 
-app.use(
-  require("express-session")({
+app.use((expressSession)({
     secret: "Cats and dogs",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
 app.use(passport.initialize());
