@@ -16,6 +16,7 @@ export const fetchUsers = () => {
   return dispatch => {
     axios.get("/users").then(response => {
       let users = response.data;
+      console.log("fetchusers action data: ", users);
       dispatch({ type: FETCH_USERS, payload: users });
     });
   };
@@ -31,17 +32,22 @@ export const fetchUser = id => {
   };
 };
 
-export const createUser = username => {
+export const createUser = (username, id) => {
+  console.log("data passed to action creator...");
+  console.log("username: ", username);
+  console.log("id: ", id);
   return dispatch => {
-    axios.post("/users", { username }).then(response => {
+    axios.post(`/credential/${id}/users`, { username }).then(response => {
+      console.log("create user action data: ", response.data);
       dispatch({ type: CREATE_USER, payload: response.data });
     });
   };
 };
 
-export const deleteUser = id => {
+export const deleteUser = (id, credentialID) => {
   return dispatch => {
-    axios.delete(`/users/${id}`).then(response => {
+    axios.delete(`/credential/${credentialID}/users/${id}`).then(response => {
+      console.log("deleteusers action data: ", response.data);
       dispatch({ type: DELETE_USER, payload: response.data });
     });
   };

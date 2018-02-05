@@ -17,7 +17,11 @@ class New extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    this.props.createUser(event.target.querySelector(".form__input").value);
+    var full_url = document.URL;
+    var url_array = full_url.split("/");
+    var last_segment = url_array[url_array.length - 3];
+
+    this.props.createUser(event.target.querySelector(".form__input").value, last_segment);
     this.props.fetchUsers();
     this.props.history.push("/");
   }

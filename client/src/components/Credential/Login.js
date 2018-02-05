@@ -33,8 +33,8 @@ class Login extends Component {
 
   errorHandler() {
     var error = "";
-    if (this.props.auth.errorMessage) {
-      error = this.props.auth.errorMessage;
+    if (this.props.auth.errorMessage.message) {
+      error = this.props.auth.errorMessage.message;
     }
 
     return error;

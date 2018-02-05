@@ -26,7 +26,7 @@ export default function(state = defaultState, action) {
     case REGISTER_FAILED:
       return _.merge({}, state, {
         loggedIn: false,
-        username: {},
+        user: {},
         errorMessage: action.payload
       });
     case LOGIN:

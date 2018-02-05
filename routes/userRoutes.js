@@ -12,6 +12,7 @@ module.exports = app => {
         console.log(err);
       } else {
         res.send(allUsers);
+        console.log("/users data", allUsers);
       }
     });
   });
@@ -32,9 +33,10 @@ module.exports = app => {
           if (err) {
             console.log(err);
           } else {
+            console.log("credential.users", credential.users);
             credential.users.push(newUser);
             credential.save();
-            res.send(credential);
+            res.send(newUser);
           }
         });
       }
@@ -105,13 +107,42 @@ module.exports = app => {
   });
 
   // DELETE a user
-  app.delete("/users/:id", function(req, res) {
-    User.findByIdAndRemove(req.params.id, function(err, foundUser) {
+  app.delete("/credential/:id/users/:user_id", function(req, res) {
+    User.findByIdAndRemove(req.params.user_id, function(err, foundUser) {
       if (err) {
         res.redirect("/users");
       } else {
         res.send(foundUser);
       }
     });
+
+    Credential.findById(req.params.id, function(err, credential) {
+      if (err) {
+        console.log(err);
+      } else {
+        var index;
+        for(var i = 0; i < credential.users.length; i++) {
+          // console.log("credential users length", credential.users.length);
+          // console.log("credential users i", credential.users[i]);
+          // console.log("req.params.user_id", req.params.user_id);
+          if(credential.users[i] == req.params.user_id) {
+            index = i;
+          }
+        }
+        // console.log("found index", index);
+        // console.log("foundIndex :", foundIndex);
+        // let index = credential.users.findIndex(req.params.user_id);
+        // console.log("length before splice:", credential.users.length);
+        credential.users.splice(index, 1)
+        // console.log("length after splice:", credential.users.length);
+        credential.save(function(err) {
+          if(err) {
+            console.log(err);
+          } else {
+            console.log("credential saved!");
+          }
+        })
+      }
+    })
   });
 };

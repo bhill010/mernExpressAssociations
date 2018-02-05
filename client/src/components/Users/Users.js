@@ -14,12 +14,15 @@ class Users extends Component {
     this.deleteIndexReturn = this.deleteIndexReturn.bind(this);
   }
 
-  deleteIndexReturn(id) {
+  deleteIndexReturn(id, credentialID) {
     return event => {
       event.preventDefault();
-      this.props.deleteUser(id);
-      this.props.fetchUsers();
-      this.props.history.push("/users");
+      this.props.deleteUser(id, credentialID);
+      setTimeout(() => {
+        this.props.fetchUsers();
+        this.props.history.push("/users");
+      }, 500);
+
     };
   }
 
@@ -49,6 +52,8 @@ class Users extends Component {
         </div>
       );
     } else {
+      // console.log(this.props.auth);
+      let credentialID = this.props.auth.user._id;
       return (
         <div>
           <h1 className="users-header">Users</h1>
@@ -73,7 +78,7 @@ class Users extends Component {
                   <div className="auth__button">
                     <button
                       className="btn btn-danger btn-flex"
-                      onClick={this.deleteIndexReturn(user._id)}
+                      onClick={this.deleteIndexReturn(user._id, credentialID)}
                     >
                       DELETE
                     </button>
@@ -83,7 +88,7 @@ class Users extends Component {
             })}
           </ul>
           <div className="auth__button">
-            <Link className="btn btn-success btn-bottom" to="/users/new">
+            <Link className="btn btn-success btn-bottom" to={`/credential/${credentialID}/users/new`}>
               CREATE
             </Link>
           </div>
