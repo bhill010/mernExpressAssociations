@@ -5,8 +5,11 @@ const keys = require("./config/keys");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
+
 const expressSession = require("express-session");
 const MongoStore = require('connect-mongo')(expressSession);
+
+const cookieSession = require("cookie-session");
 
 const User = require("./models/user");
 const Credential = require("./models/credential");
@@ -16,13 +19,21 @@ mongoose.connect(keys.mongoURI);
 const app = express();
 app.use(bodyParser.json());
 
-app.use((expressSession)({
-    secret: "Cats and dogs",
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+// app.use((expressSession)({
+//     secret: "Cats and dogs",
+//     resave: false,
+//     saveUninitialized: false,
+//     store: new MongoStore({ mongooseConnection: mongoose.connection })
+//   })
+// );
+
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 

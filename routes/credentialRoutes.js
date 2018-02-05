@@ -43,6 +43,7 @@ module.exports = app => {
 
   app.get("/api/logout", function(req, res) {
     req.logout();
-    res.redirect("/users");
+    res.send("Complete")
+    // res.redirect("/users");
   });
 };

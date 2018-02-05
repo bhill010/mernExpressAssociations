@@ -7,6 +7,7 @@ const Credential = require("../models/credential");
 module.exports = app => {
   // GET users
   app.get("/api/users", function(req, res, next) {
+    // console.log("/users req.user", req.user);
     User.find({}, function(err, allUsers) {
       if (err) {
         console.log(err);
