@@ -31,6 +31,8 @@ class Users extends Component {
       return <div>Loading</div>;
     }
     console.log("auth state: ", this.props.auth);
+    console.log("users state: ", this.props.users);
+    console.log("persist state: ", this.props.persist);
 
     if (!this.props.auth.loggedIn) {
       return (
@@ -100,7 +102,11 @@ class Users extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users, auth: state.auth };
+  return {
+    users: state.users,
+    auth: state.auth,
+    persist: state.persist
+   };
 }
 
 export default connect(mapStateToProps, { fetchUsers, deleteUser })(Users);

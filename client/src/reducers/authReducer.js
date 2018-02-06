@@ -43,8 +43,6 @@ export default function(state = defaultState, action) {
       });
     case LOGOUT:
       return _.merge({}, state, defaultState);
-    case 'persist/REHYDRATE':
-      return { ...state, persistedState: action.payload };
     default:
       return state;
   }
