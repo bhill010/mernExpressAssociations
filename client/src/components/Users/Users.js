@@ -30,6 +30,7 @@ class Users extends Component {
     if (!this.props.users) {
       return <div>Loading</div>;
     }
+    console.log("auth state: ", this.props.auth);
 
     if (!this.props.auth.loggedIn) {
       return (

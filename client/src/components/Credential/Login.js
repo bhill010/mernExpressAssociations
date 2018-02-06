@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { login, logout } from "../../actions";
+import { login, logout, fetchUsers } from "../../actions";
 
 import axios from "axios";
 
@@ -66,6 +66,9 @@ class Login extends Component {
         <Link className="btn btn-success" to="/users">
           Back to /users
         </Link>
+        <button onClick={this.props.fetchUsers}>
+          Test Button for Fetching Users
+        </button>
       </div>
     );
   }
@@ -75,4 +78,4 @@ function mapStateToProps(state) {
   return { auth: state.auth };
 }
 
-export default connect(mapStateToProps, { login, logout })(Login);
+export default connect(mapStateToProps, { login, logout, fetchUsers })(Login);
