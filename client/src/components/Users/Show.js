@@ -41,6 +41,8 @@ class Show extends Component {
     if (!this.props.users || !this.props.users.username) {
       return <div>Loading</div>;
     }
+    let credentialID = this.props.auth.user._id;
+
     return (
       <div>
         <h2>Profile page for: {this.props.users.username}</h2>
@@ -51,7 +53,7 @@ class Show extends Component {
           <div className="show-btn__div">
             <Link
               className="btn btn-info show-link"
-              to={`/users/${this.props.users._id}/edit`}
+              to={`/credential/${credentialID}/users/${this.props.users._id}/edit`}
             >
               PUT
             </Link>
@@ -81,7 +83,7 @@ class Show extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users };
+  return { users: state.users, auth: state.auth };
 }
 
 export default connect(mapStateToProps, { fetchUser, fetchUsers, deleteUser })(
