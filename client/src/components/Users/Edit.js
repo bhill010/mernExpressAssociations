@@ -14,12 +14,22 @@ class Edit extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.showIndexReturn = this.showIndexReturn.bind(this);
   }
 
   componentDidMount() {
     var full_url = document.URL;
     var url_array = full_url.split("/");
     var last_segment = url_array[url_array.length - 2];
+  }
+
+  showIndexReturn(event) {
+    event.preventDefault();
+    this.props.fetchUsers();
+
+    setTimeout(() => {
+      this.props.history.push("/users");
+    }, 1000);
   }
 
   onSubmit(event) {
@@ -48,6 +58,11 @@ class Edit extends Component {
           />
           <input className="btn btn-primary form__submit" type="submit" />
         </form>
+        <div>
+          <button className="btn btn-success" onClick={this.showIndexReturn}>
+            TEST RETURN TO /USERS
+          </button>
+        </div>
         <div>
           <Link className="btn btn-success btn-bottom" to="/">
             Return to /users

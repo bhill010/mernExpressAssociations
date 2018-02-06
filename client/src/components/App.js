@@ -39,7 +39,10 @@ class App extends Component {
                 authed={this.props.auth.loggedIn}
                 component={New} />
               />
-              <PrivateRoute path="/credential/:id/users/:user_id/edit" component={Edit} />
+              <PrivateRoute
+                authed={this.props.auth.loggedIn}
+                path="/credential/:id/users/:user_id/edit"
+                component={Edit} />
               <PrivateRoute
                 authed={this.props.auth.loggedIn}
                 path="/users/:id"

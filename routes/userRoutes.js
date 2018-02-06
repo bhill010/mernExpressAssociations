@@ -83,9 +83,9 @@ module.exports = app => {
   });
 
   // UPDATE a user
-  app.put("/api/users/:id", function(req, res) {
+  app.put("/api/credential/:id/users/:user_id", function(req, res) {
     User.findByIdAndUpdate(
-      req.params.id,
+      req.params.user_id,
       req.body.username,
       { new: true },
       function(err, updatedUser) {
