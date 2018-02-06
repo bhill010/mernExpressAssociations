@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { login, logout, fetchUsers } from "../../actions";
+import { login, logout, fetchUsers, clearLoginErrors } from "../../actions";
 
 import axios from "axios";
 
@@ -12,6 +12,10 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.logout = this.logout.bind(this);
     this.errorHandler = this.errorHandler.bind(this);
+  }
+
+  componentWillUnmount() {
+    this.props.clearLoginErrors();
   }
 
   onSubmit(event) {
@@ -33,8 +37,13 @@ class Login extends Component {
 
   errorHandler() {
     var error = "";
+    console.log(this.props.auth);
     if (this.props.auth.errorMessage.message) {
+      // console.log("login error: ", this.props.auth.errorMessage.message);
       error = this.props.auth.errorMessage.message;
+      return error;
+    } else if (this.props.auth.errorMessage) {
+      error = this.props.auth.errorMessage;
     }
 
     return error;
@@ -78,4 +87,4 @@ function mapStateToProps(state) {
   return { auth: state.auth };
 }
 
-export default connect(mapStateToProps, { login, logout, fetchUsers })(Login);
+export default connect(mapStateToProps, { login, logout, fetchUsers, clearLoginErrors })(Login);

@@ -9,7 +9,8 @@ import {
   REGISTER_FAILED,
   LOGIN,
   LOGIN_FAILED,
-  LOGOUT
+  LOGOUT,
+  CLEAR_LOGIN_ERRORS
 } from "./types";
 
 export const fetchUsers = () => {
@@ -90,6 +91,12 @@ export const login = (username, password, cb) => {
       });
   };
 };
+
+export const clearLoginErrors = () => {
+  return dispatch => {
+    dispatch({ type: CLEAR_LOGIN_ERRORS });
+  }
+}
 
 export const logout = cb => {
   return dispatch => {

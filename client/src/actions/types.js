@@ -11,3 +11,4 @@ export const REGISTER_FAILED = "register_failed";
 export const LOGIN = "login";
 export const LOGIN_FAILED = "login_failed";
 export const LOGOUT = "logout";
+export const CLEAR_LOGIN_ERRORS = "clear_login_errors";
