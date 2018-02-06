@@ -26,10 +26,10 @@ class Header extends Component {
           <span className="">/users</span>
           <span className="">RESTful Routes</span>
           <span className="">Github</span>
-          <Link className="btn btn-info" to="/api/register">
+          <Link className="btn btn-info" to="/register">
             REGISTER
           </Link>
-          <Link className="btn btn-info" to="/api/login">
+          <Link className="btn btn-info" to="/login">
             LOGIN
           </Link>
         </nav>

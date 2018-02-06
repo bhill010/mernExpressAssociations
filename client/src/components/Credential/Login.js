@@ -75,9 +75,6 @@ class Login extends Component {
         <Link className="btn btn-success" to="/users">
           Back to /users
         </Link>
-        <button onClick={this.props.fetchUsers}>
-          Test Button for Fetching Users
-        </button>
       </div>
     );
   }

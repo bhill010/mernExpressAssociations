@@ -31,8 +31,8 @@ class App extends Component {
             <Header />
             <Route exact path="/" render={() => <Redirect to="/users" />} />
             <Switch>
-              <Route exact path="/api/register" component={Register} />
-              <Route exact path="/api/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/users" component={Users} />
               <PrivateRoute
                 exact path="/credential/:id/users/new"
