@@ -72,7 +72,7 @@ module.exports = app => {
   });
 
   // EDIT a user
-  app.get("/api/users/:id/edit", function(req, res) {
+  app.get("/api/credential/:id/users/:id/edit", function(req, res) {
     User.findById(req.params.id, function(err, foundUser) {
       if (err) {
         res.redirect("/users");

@@ -36,10 +36,12 @@ class Edit extends Component {
     event.preventDefault();
     var full_url = document.URL;
     var url_array = full_url.split("/");
-    var last_segment = url_array[url_array.length - 2];
+    var credential_id = url_array[url_array.length - 4];
+    var user_id = url_array[url_array.length - 2];
 
     this.props.updateUser(
-      last_segment,
+      user_id,
+      credential_id,
       event.target.querySelector(".form__input").value
     );
     this.props.fetchUsers();

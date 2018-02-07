@@ -54,9 +54,9 @@ export const deleteUser = (id, credentialID) => {
   };
 };
 
-export const updateUser = (id, username, cb = null) => {
+export const updateUser = (id, credentialID, username, cb = null) => {
   return dispatch => {
-    axios.put(`/api/users/${id}`, { username }).then(response => {
+    axios.put(`/api/credential/${credentialID}/users/${id}`, { username }).then(response => {
       dispatch({ type: UPDATE_USER, payload: response.data });
     });
   };
@@ -103,6 +103,17 @@ export const logout = cb => {
     axios.get("/api/logout").then(response => {
       dispatch({ type: LOGOUT, payload: response.data });
       cb("/users");
+    });
+  };
+};
+
+// CREDENTIALS
+export const fetchCredential = id => {
+  return dispatch => {
+    axios.get(`/api/credential/${id}`).then(response => {
+      let credential = response.data;
+
+      dispatch({ type: FETCH_USER, payload: credential });
     });
   };
 };
