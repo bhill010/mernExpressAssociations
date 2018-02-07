@@ -94,7 +94,7 @@ module.exports = app => {
       if (err) {
         res.redirect("/users");
       } else {
-        async function a() {
+        async function retrieveOwnedUsers() {
           var foundUsers = [];
           for(let i = 0; i < foundCredential.users.length; i++) {
             var currentID = foundCredential.users[i];
@@ -112,7 +112,7 @@ module.exports = app => {
           console.log("foundUsers complete: ", foundUsers);
           res.send(foundUsers);
         }
-        a();
+        retrieveOwnedUsers();
       }
     });
   });

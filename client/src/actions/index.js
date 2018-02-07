@@ -10,7 +10,8 @@ import {
   LOGIN,
   LOGIN_FAILED,
   LOGOUT,
-  CLEAR_LOGIN_ERRORS
+  CLEAR_LOGIN_ERRORS,
+  FETCH_CREDENTIAL_USERS
 } from "./types";
 
 export const fetchUsers = () => {
@@ -72,7 +73,7 @@ export const register = (username, password, cb) => {
       })
       .catch(err => {
         dispatch({ type: REGISTER_FAILED, payload: err.response.data });
-        cb("/api/register");
+        cb("/register");
       });
   };
 };
@@ -87,7 +88,7 @@ export const login = (username, password, cb) => {
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILED, payload: err.response.data });
-        cb("/api/login");
+        cb("/login");
       });
   };
 };
@@ -108,12 +109,12 @@ export const logout = cb => {
 };
 
 // CREDENTIALS
-export const fetchCredential = id => {
+export const fetchCredentialUsers = id => {
   return dispatch => {
     axios.get(`/api/credential/${id}`).then(response => {
-      let credential = response.data;
+      let ownedUsers = response.data;
 
-      dispatch({ type: FETCH_USER, payload: credential });
+      dispatch({ type: FETCH_CREDENTIAL_USERS, payload: ownedUsers });
     });
   };
 };

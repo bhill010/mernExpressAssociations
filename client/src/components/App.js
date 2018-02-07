@@ -11,6 +11,7 @@ import Header from "./Misc/Header";
 import Register from "./Credential/Register";
 import Login from "./Credential/Login";
 import PrivateRoute from "./Misc/PrivateRoute";
+import CredentialShow from "./Credential/Show";
 
 import "../style/App.css";
 
@@ -47,6 +48,11 @@ class App extends Component {
                 authed={this.props.auth.loggedIn}
                 path="/users/:id"
                 component={Show}
+              />
+              <PrivateRoute
+                authed={this.props.auth.loggedIn}
+                path="/credential/:id"
+                component={CredentialShow}
               />
             </Switch>
           </div>

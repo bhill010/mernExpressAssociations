@@ -35,11 +35,15 @@ class Header extends Component {
         </nav>
       );
     } else {
+      let credentialID = this.props.auth.user._id;
       return (
         <nav className="header">
           <span className="">/users</span>
           <span className="">RESTful Routes</span>
           <span className="">Github</span>
+          <Link className="btn btn-info" to={`/credential/${credentialID}`}>
+            DASHBOARD
+          </Link>
           <button className="btn btn-info btn-flex" onClick={this.logout}>
             Logout
           </button>
