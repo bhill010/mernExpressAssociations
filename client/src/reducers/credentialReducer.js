@@ -12,7 +12,9 @@ export default function(state = defaultState, action) {
   Object.freeze(state);
   switch (action.type) {
     case FETCH_CREDENTIAL_USERS:
-      return _.merge({}, state, action.payload);
+      return _.merge({}, state, {
+        ownedUsers: action.payload
+      });
     default:
       return state;
   }
