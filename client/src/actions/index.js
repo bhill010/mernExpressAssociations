@@ -73,7 +73,7 @@ export const register = (username, password, cb) => {
       })
       .catch(err => {
         dispatch({ type: REGISTER_FAILED, payload: err.response.data });
-        cb("/register");
+        cb("/users");
       });
   };
 };
@@ -88,7 +88,7 @@ export const login = (username, password, cb) => {
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILED, payload: err.response.data });
-        cb("/login");
+        cb("/users");
       });
   };
 };

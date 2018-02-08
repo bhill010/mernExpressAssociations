@@ -44,7 +44,7 @@ class Header extends Component {
           <Link className="btn btn-info" to={`/credential/${credentialID}`}>
             DASHBOARD
           </Link>
-          <button className="btn btn-info btn-flex" onClick={this.logout}>
+          <button className="btn btn-warning" onClick={this.logout}>
             Logout
           </button>
         </nav>

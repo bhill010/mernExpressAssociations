@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions";
 
+import "../../style/App.css";
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +36,7 @@ class Register extends Component {
   render() {
     console.log("auth state: ", this.props.auth);
     return (
-      <div>
+      <div className="center_container">
         <h3>Register Page</h3>
         <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
@@ -46,13 +48,13 @@ class Register extends Component {
           />
           <input
             className="form-control form__input form__password"
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
           />
           <input className="btn btn-primary form__submit" type="submit" />
         </form>
-        <Link className="btn btn-success" to="/users">
+        <Link className="btn btn-success top_margin" to="/users">
           Back to /users
         </Link>
       </div>

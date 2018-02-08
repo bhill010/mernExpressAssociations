@@ -69,13 +69,8 @@ class Show extends Component {
         </div>
         <div>
           <button className="btn btn-success" onClick={this.showIndexReturn}>
-            TEST RETURN TO /USERS
-          </button>
-        </div>
-        <div>
-          <Link className="btn btn-success btn-bottom" to="/">
             Return to /users
-          </Link>
+          </button>
         </div>
       </div>
     );

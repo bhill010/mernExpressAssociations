@@ -5,6 +5,8 @@ import { login, logout, fetchUsers, clearLoginErrors } from "../../actions";
 
 import axios from "axios";
 
+import "../../style/App.css";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +53,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="center_container">
         <h3>Login Page</h3>
         <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
@@ -63,16 +65,13 @@ class Login extends Component {
           />
           <input
             className="form-control form__input form__password"
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
           />
           <input className="btn btn-primary form__submit" type="submit" />
         </form>
-        <button className="btn btn-info btn-flex" onClick={this.logout}>
-          Test Logout
-        </button>
-        <Link className="btn btn-success" to="/users">
+        <Link className="btn btn-success top_margin" to="/users">
           Back to /users
         </Link>
       </div>
