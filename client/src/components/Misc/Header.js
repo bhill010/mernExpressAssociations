@@ -45,7 +45,7 @@ class Header extends Component {
             DASHBOARD
           </Link>
           <button className="btn btn-warning" onClick={this.logout}>
-            Logout
+            LOGOUT
           </button>
         </nav>
       );

@@ -12,6 +12,7 @@ class Users extends Component {
     super(props);
 
     this.deleteIndexReturn = this.deleteIndexReturn.bind(this);
+    this.isIdValid = this.isIdValid.bind(this);
   }
 
   deleteIndexReturn(id, credentialID) {
@@ -24,6 +25,37 @@ class Users extends Component {
       }, 500);
 
     };
+  }
+
+  isIdValid(userID, ownerIDArray, credentialID) {
+    for(var i = 0; i < ownerIDArray.length; i++) {
+      if (userID == ownerIDArray[i]) {
+        return (
+          <div className="users__button-container">
+            <div className="auth__button">
+              <Link
+                className="btn btn-info btn-flex"
+                to={`/users/${userID}`}
+              >
+                SHOW
+              </Link>
+            </div>
+            <div className="auth__button">
+              <button
+                className="btn btn-danger btn-flex"
+                onClick={this.deleteIndexReturn(userID, credentialID)}
+              >
+                DELETE
+              </button>
+            </div>
+        </div>
+        )
+      }
+    }
+    console.log("userID: ", userID);
+    console.log("ownerIDArray: ", ownerIDArray);
+    console.log("auth props: ", this.props.auth);
+    console.log("NOT FOUND");
   }
 
   render() {
@@ -58,44 +90,30 @@ class Users extends Component {
       // console.log(this.props.auth);
       let credentialID = this.props.auth.user._id;
       return (
-        <div>
-          <h1 className="users-header">Users</h1>
-          <ul className="list-group">
-            {_.map(this.props.users, (user, idx) => {
-              return (
-                <div className="list-group-item-container" key={idx}>
-                  <li className="list-group-item users__list-item user__number">
-                    User {idx}
-                  </li>
-                  <li className="list-group-item users__list-item">
-                    {user.username}
-                  </li>
-                  <div className="auth__button">
-                    <Link
-                      className="btn btn-info btn-flex"
-                      to={`/users/${user._id}`}
-                    >
-                      SHOW
-                    </Link>
+          <div>
+            <h1 className="users-header">Users</h1>
+            <ul className="list-group">
+              {_.map(this.props.users, (user, idx) => {
+                return (
+                  <div className="list-group-item-container" key={idx}>
+                    <li className="list-group-item users__list-item user__number">
+                      User {idx}
+                    </li>
+                    <li className="list-group-item users__list-item">
+                      {user.username}
+                    </li>
+                    {this.isIdValid(user._id, this.props.auth.user.users, credentialID)}
+
                   </div>
-                  <div className="auth__button">
-                    <button
-                      className="btn btn-danger btn-flex"
-                      onClick={this.deleteIndexReturn(user._id, credentialID)}
-                    >
-                      DELETE
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </ul>
-          <div className="auth__button">
-            <Link className="btn btn-success btn-bottom" to={`/credential/${credentialID}/users/new`}>
-              CREATE
-            </Link>
+                );
+              })}
+            </ul>
+            <div className="auth__button">
+              <Link className="btn btn-success btn-bottom" to={`/credential/${credentialID}/users/new`}>
+                CREATE
+              </Link>
+            </div>
           </div>
-        </div>
       );
     }
   }
