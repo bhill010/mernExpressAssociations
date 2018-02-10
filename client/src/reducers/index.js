@@ -7,6 +7,5 @@ import credentialReducer from './credentialReducer';
 export default combineReducers({
   users: userReducer,
   auth: authReducer,
-  persist: persistReducer,
   credential: credentialReducer
 });

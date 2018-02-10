@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
-import { fetchUsers, deleteUser } from "../../actions";
+import { fetchUsers, deleteUser, fetchCredentialUsers } from "../../actions";
 import { connect } from "react-redux";
 import axios from "axios";
 
@@ -28,8 +28,11 @@ class Users extends Component {
   }
 
   isIdValid(userID, ownerIDArray, credentialID) {
+    console.log("IS ID VALID TRIGGERED");
+    console.log("ownerIDArray length", ownerIDArray.length);
     for(var i = 0; i < ownerIDArray.length; i++) {
-      if (userID == ownerIDArray[i]) {
+      if (userID == ownerIDArray[i]._id) {
+        console.log("ID FOUND");
         return (
           <div className="users__button-container">
             <div className="auth__button">
@@ -52,19 +55,19 @@ class Users extends Component {
         )
       }
     }
-    console.log("userID: ", userID);
-    console.log("ownerIDArray: ", ownerIDArray);
+    // console.log("userID: ", userID);
+    // console.log("ownerIDArray: ", ownerIDArray);
     console.log("auth props: ", this.props.auth);
-    console.log("NOT FOUND");
+    // console.log("NOT FOUND");
   }
 
   render() {
     if (!this.props.users) {
       return <div>Loading</div>;
     }
-    console.log("auth state: ", this.props.auth);
-    console.log("users state: ", this.props.users);
-    console.log("persist state: ", this.props.persist);
+    // console.log("auth state: ", this.props.auth);
+    // console.log("users state: ", this.props.users);
+    // console.log("persist state: ", this.props.persist);
 
     if (!this.props.auth.loggedIn) {
       return (
@@ -87,8 +90,22 @@ class Users extends Component {
         </div>
       );
     } else {
+        // if (!this.props.auth.user._id) {
+        //   return <div>Loading...</div>
+        // }
+
+      // console.log("/Users about to fetch credential users...");
+      // let credentialID = this.props.auth.user._id;
+      // console.log("credentialID", credentialID);
+      // this.props.fetchCredentialUsers(credentialID);
+
       // console.log(this.props.auth);
       let credentialID = this.props.auth.user._id;
+      console.log("Hi");
+      this.props.fetchCredentialUsers(credentialID);
+      console.log("credential state: ", this.props.credential.ownedUsers);
+
+
       return (
           <div>
             <h1 className="users-header">Users</h1>
@@ -102,7 +119,7 @@ class Users extends Component {
                     <li className="list-group-item users__list-item">
                       {user.username}
                     </li>
-                    {this.isIdValid(user._id, this.props.auth.user.users, credentialID)}
+                    {this.isIdValid(user._id, this.props.credential.ownedUsers, credentialID)}
 
                   </div>
                 );
@@ -123,8 +140,9 @@ function mapStateToProps(state) {
   return {
     users: state.users,
     auth: state.auth,
-    persist: state.persist
+    persist: state.persist,
+    credential: state.credential
    };
 }
 
-export default connect(mapStateToProps, { fetchUsers, deleteUser })(Users);
+export default connect(mapStateToProps, { fetchUsers, deleteUser, fetchCredentialUsers })(Users);

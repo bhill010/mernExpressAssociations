@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createUser, fetchUsers } from "../../actions";
+import { createUser, fetchUsers, fetchCredentialUsers } from "../../actions";
 
 import "../../style/New.css";
 import "../../style/App.css";
@@ -23,7 +23,11 @@ class New extends Component {
 
     this.props.createUser(event.target.querySelector(".form__input").value, last_segment);
     this.props.fetchUsers();
-    this.props.history.push("/");
+    this.props.fetchCredentialUsers(this.props.auth.user._id);
+    setTimeout(() => {
+      this.props.history.push("/users");
+    }, 1000);
+    // this.props.history.push("/");
   }
   render() {
     return (
@@ -48,7 +52,7 @@ class New extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users };
+  return { users: state.users, auth: state.auth };
 }
 
-export default connect(mapStateToProps, { createUser, fetchUsers })(New);
+export default connect(mapStateToProps, { createUser, fetchUsers, fetchCredentialUsers })(New);

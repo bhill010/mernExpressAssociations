@@ -112,6 +112,7 @@ export const logout = cb => {
 export const fetchCredentialUsers = id => {
   return dispatch => {
     axios.get(`/api/credential/${id}`).then(response => {
+      console.log("credential response data: ", response.data);
       let ownedUsers = response.data;
 
       dispatch({ type: FETCH_CREDENTIAL_USERS, payload: ownedUsers });
