@@ -39,7 +39,7 @@ class Login extends Component {
 
   errorHandler() {
     var error = "";
-    console.log(this.props.auth);
+    // console.log(this.props.auth);
     if (this.props.auth.errorMessage.message) {
       // console.log("login error: ", this.props.auth.errorMessage.message);
       error = this.props.auth.errorMessage.message;

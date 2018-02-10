@@ -35,9 +35,9 @@ export const fetchUser = id => {
 };
 
 export const createUser = (username, id) => {
-  console.log("data passed to action creator...");
-  console.log("username: ", username);
-  console.log("id: ", id);
+  // console.log("data passed to action creator...");
+  // console.log("username: ", username);
+  // console.log("id: ", id);
   return dispatch => {
     axios.post(`/api/credential/${id}/users`, { username }).then(response => {
       console.log("create user action data: ", response.data);
@@ -49,7 +49,7 @@ export const createUser = (username, id) => {
 export const deleteUser = (id, credentialID) => {
   return dispatch => {
     axios.delete(`/api/credential/${credentialID}/users/${id}`).then(response => {
-      console.log("deleteusers action data: ", response.data);
+      // console.log("deleteusers action data: ", response.data);
       dispatch({ type: DELETE_USER, payload: response.data });
     });
   };
@@ -112,7 +112,7 @@ export const logout = cb => {
 export const fetchCredentialUsers = id => {
   return dispatch => {
     axios.get(`/api/credential/${id}`).then(response => {
-      console.log("credential response data: ", response.data);
+      // console.log("credential response data: ", response.data);
       let ownedUsers = response.data;
 
       dispatch({ type: FETCH_CREDENTIAL_USERS, payload: ownedUsers });

@@ -36,10 +36,10 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #f2f2f2;
+  overflow: overlay;
 }
 
 .route-container {
-  position: absolute;
   top: 20%;
   width: 600px;
 }

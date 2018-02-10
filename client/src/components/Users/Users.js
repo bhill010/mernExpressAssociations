@@ -27,21 +27,29 @@ class Users extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let credentialID = this.props.auth.user._id;
     this.props.fetchCredentialUsers(credentialID);
   }
+
+  // componentWillMount() {
+  //   let credentialID = this.props.auth.user._id;
+  //   this.props.fetchCredentialUsers(credentialID);
+  // }
   //
   // componentWillReceiveProps(props) {
   //   this.setState({ credential: this.props.credential})
   // }
 
   isIdValid(userID, ownerIDArray, credentialID) {
-    console.log("IS ID VALID TRIGGERED");
-    console.log("ownerIDArray length", ownerIDArray.length);
+    // console.log("IS ID VALID TRIGGERED");
+    // console.log("ownerIDArray length", ownerIDArray.length);
+
     for(var i = 0; i < ownerIDArray.length; i++) {
       if (userID == ownerIDArray[i]._id) {
-        console.log("ID FOUND");
+      // if (ownerIDArray.indexOf(userID) !== -1) {
+
+        // console.log("ID FOUND");
         return (
           <div className="users__button-container">
             <div className="auth__button">
@@ -66,12 +74,13 @@ class Users extends Component {
     }
     // console.log("userID: ", userID);
     // console.log("ownerIDArray: ", ownerIDArray);
-    console.log("auth props: ", this.props.auth);
+    // console.log("auth props: ", this.props.auth);
     // console.log("NOT FOUND");
   }
 
   render() {
-    if (!this.props.users) {
+    console.log("rerender triggered");
+    if (!this.props.users || !this.props.users.users) {
       return <div>Loading</div>;
     }
     // console.log("auth state: ", this.props.auth);
@@ -79,11 +88,13 @@ class Users extends Component {
     // console.log("persist state: ", this.props.persist);
 
     if (!this.props.auth.loggedIn) {
+      let filteredUsers = this.props.users.users.filter(x => x);
+      console.log("filteredUsers", filteredUsers);
       return (
         <div>
           <h1 className="users-header">Users</h1>
           <ul className="list-group">
-            {_.map(this.props.users, (user, idx) => {
+            {_.map(filteredUsers, (user, idx) => {
               return (
                 <div className="list-group-item-container" key={idx}>
                   <li className="list-group-item users__list-item user__number">
@@ -104,24 +115,24 @@ class Users extends Component {
         // }
 
       // console.log("/Users about to fetch credential users...");
-      // let credentialID = this.props.auth.user._id;
+      let credentialID = this.props.auth.user._id;
       // console.log("credentialID", credentialID);
       // this.props.fetchCredentialUsers(credentialID);
 
       // console.log(this.props.auth);
-      let credentialID = this.props.auth.user._id;
-      console.log("Hi");
-      this.props.fetchCredentialUsers(credentialID);
-      setTimeout(() => {
-      }, 5000);
-      console.log("credential state: ", this.props.credential.ownedUsers);
-
-
+      // this.props.fetchCredentialUsers(credentialID);
+      // setTimeout(() => {
+      // }, 5000);
+      // console.log("credential state: ", this.props.credential.ownedUsers);
+      console.log("this.props.users", this.props.users);
+      let filteredUsers = this.props.users.users.filter(x => x);
+      console.log("filteredUsers", filteredUsers);
       return (
           <div>
             <h1 className="users-header">Users</h1>
             <ul className="list-group">
-              {_.map(this.props.users, (user, idx) => {
+              {_.map(filteredUsers, (user, idx) => {
+                // console.log("mapping is happening");
                 return (
                   <div className="list-group-item-container" key={idx}>
                     <li className="list-group-item users__list-item user__number">
@@ -151,7 +162,6 @@ function mapStateToProps(state) {
   return {
     users: state.users,
     auth: state.auth,
-    persist: state.persist,
     credential: state.credential
    };
 }
