@@ -27,6 +27,15 @@ class Users extends Component {
     };
   }
 
+  componentWillMount() {
+    let credentialID = this.props.auth.user._id;
+    this.props.fetchCredentialUsers(credentialID);
+  }
+  //
+  // componentWillReceiveProps(props) {
+  //   this.setState({ credential: this.props.credential})
+  // }
+
   isIdValid(userID, ownerIDArray, credentialID) {
     console.log("IS ID VALID TRIGGERED");
     console.log("ownerIDArray length", ownerIDArray.length);
@@ -103,6 +112,8 @@ class Users extends Component {
       let credentialID = this.props.auth.user._id;
       console.log("Hi");
       this.props.fetchCredentialUsers(credentialID);
+      setTimeout(() => {
+      }, 5000);
       console.log("credential state: ", this.props.credential.ownedUsers);
 
 
