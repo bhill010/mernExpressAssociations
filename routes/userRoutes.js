@@ -72,10 +72,13 @@ module.exports = app => {
 
   // SHOW a user
   app.get("/api/users/:id", function(req, res) {
+    console.log("show route params id: ", req.params.id);
     User.findById(req.params.id, function(err, foundUser) {
       if (err) {
+        console.log(err);
         res.redirect("/users");
       } else {
+        console.log("SHOW user route response: ", foundUser);
         res.send(foundUser);
       }
     });

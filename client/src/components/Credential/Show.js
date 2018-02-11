@@ -30,12 +30,37 @@ class CredentialShow extends Component {
     }, 1000);
   }
 
+  isIdValid(user, userOwnerID, ownerID) {
+
+    if (userOwnerID == ownerID) {
+
+
+    // if (ownerIDArray.indexOf(userID) !== -1) {
+
+      // console.log("ID FOUND");
+      return (
+        <li
+          className="list-group-item list-group-item-dashboard"
+          key={user._id}>
+          {user.username}
+        </li>
+      )
+    }
+    // console.log("userID: ", userID);
+    // console.log("ownerIDArray: ", ownerIDArray);
+    // console.log("auth props: ", this.props.auth);
+    // console.log("NOT FOUND");
+  }
+
+
   render() {
     if (!this.props.credential || !this.props.credential.ownedUsers) {
       return <div>Loading</div>;
     }
     console.log("owned users: ", this.props.credential);
-    let filteredUsers = this.props.credential.ownedUsers.filter(x => x);
+    // let filteredUsers = this.props.credential.ownedUsers.filter(x => x);
+    console.log("this.props.users :", this.props.users);
+    let filteredUsers = this.props.users.users.filter(x => x);
     return (
       <div className="dashboard-container">
         <h1 className="component-header">
@@ -45,7 +70,9 @@ class CredentialShow extends Component {
         <ul className="list-group list-group-dashboard">
           {_.map(filteredUsers, (user, idx) => {
             return (
-              <li className="list-group-item list-group-item-dashboard" key={idx}>{user.username}</li>
+              <div key={idx}>
+                { this.isIdValid(user, user.owner.id, this.props.auth.user._id)}
+              </div>
             );
           })}
         </ul>
@@ -57,7 +84,7 @@ class CredentialShow extends Component {
   }
 }
 function mapStateToProps(state) {
-  return { auth: state.auth, credential: state.credential };
+  return { auth: state.auth, credential: state.credential, users: state.users };
 }
 
 export default connect(mapStateToProps, { fetchCredentialUsers, fetchUsers })(

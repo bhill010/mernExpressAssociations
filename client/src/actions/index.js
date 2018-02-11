@@ -26,6 +26,7 @@ export const fetchUsers = () => {
 
 export const fetchUser = id => {
   return dispatch => {
+    console.log("fetch user REQUEST: ", `/api/users/${id}`);
     axios.get(`/api/users/${id}`).then(response => {
       let user = response.data;
       console.log("fetch user action data: ", user);
