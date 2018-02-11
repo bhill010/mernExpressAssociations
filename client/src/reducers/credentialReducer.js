@@ -12,7 +12,7 @@ export default function(state = defaultState, action) {
   Object.freeze(state);
   switch (action.type) {
     case FETCH_CREDENTIAL_USERS:
-
+      console.log("credential users reducer data: ", newState);
       let newState = _.merge({}, state, { ownedUsers: action.payload })
       return newState;
     default:

@@ -27,10 +27,19 @@ class Users extends Component {
     };
   }
 
-  componentDidMount() {
-    let credentialID = this.props.auth.user._id;
-    this.props.fetchCredentialUsers(credentialID);
-  }
+  componentWillReceiveProps(nextProps){
+     if(nextProps.value !== this.props.value) {
+       let credentialID = this.props.auth.user._id;
+       this.props.fetchCredentialUsers(credentialID);
+     }
+    }
+
+  // componentDidMount() {
+  //   console.log("users component mounting");
+  //   let credentialID = this.props.auth.user._id;
+  //   console.log("credentialID", this.props.auth);
+  //   this.props.fetchCredentialUsers(credentialID);
+  // }
 
   // componentWillMount() {
   //   let credentialID = this.props.auth.user._id;
@@ -41,36 +50,37 @@ class Users extends Component {
   //   this.setState({ credential: this.props.credential})
   // }
 
-  isIdValid(userID, ownerIDArray, credentialID) {
+  isIdValid(userID, ownerID) {
     // console.log("IS ID VALID TRIGGERED");
     // console.log("ownerIDArray length", ownerIDArray.length);
+    console.log("userID", userID);
+    console.log("ownerID", ownerID);
+    if (userID == ownerID) {
 
-    for(var i = 0; i < ownerIDArray.length; i++) {
-      if (userID == ownerIDArray[i]._id) {
-      // if (ownerIDArray.indexOf(userID) !== -1) {
 
-        // console.log("ID FOUND");
-        return (
-          <div className="users__button-container">
-            <div className="auth__button">
-              <Link
-                className="btn btn-info btn-flex"
-                to={`/users/${userID}`}
-              >
-                SHOW
-              </Link>
-            </div>
-            <div className="auth__button">
-              <button
-                className="btn btn-danger btn-flex"
-                onClick={this.deleteIndexReturn(userID, credentialID)}
-              >
-                DELETE
-              </button>
-            </div>
-        </div>
-        )
-      }
+    // if (ownerIDArray.indexOf(userID) !== -1) {
+
+      // console.log("ID FOUND");
+      return (
+        <div className="users__button-container">
+          <div className="auth__button">
+            <Link
+              className="btn btn-info btn-flex"
+              to={`/users/${userID}`}
+            >
+              SHOW
+            </Link>
+          </div>
+          <div className="auth__button">
+            <button
+              className="btn btn-danger btn-flex"
+              onClick={this.deleteIndexReturn(userID, ownerID)}
+            >
+              DELETE
+            </button>
+          </div>
+      </div>
+      )
     }
     // console.log("userID: ", userID);
     // console.log("ownerIDArray: ", ownerIDArray);
@@ -119,20 +129,23 @@ class Users extends Component {
       // console.log("credentialID", credentialID);
       // this.props.fetchCredentialUsers(credentialID);
 
-      // console.log(this.props.auth);
+      console.log("auth props", this.props.auth);
       // this.props.fetchCredentialUsers(credentialID);
       // setTimeout(() => {
       // }, 5000);
-      // console.log("credential state: ", this.props.credential.ownedUsers);
+      console.log("credential state: ", this.props.credential.ownedUsers);
       console.log("this.props.users", this.props.users);
       let filteredUsers = this.props.users.users.filter(x => x);
       console.log("filteredUsers", filteredUsers);
+
+
       return (
           <div>
             <h1 className="users-header">Users</h1>
             <ul className="list-group">
               {_.map(filteredUsers, (user, idx) => {
                 // console.log("mapping is happening");
+                console.log("filtered user: ", user);
                 return (
                   <div className="list-group-item-container" key={idx}>
                     <li className="list-group-item users__list-item user__number">
@@ -141,7 +154,7 @@ class Users extends Component {
                     <li className="list-group-item users__list-item">
                       {user.username}
                     </li>
-                    {this.isIdValid(user._id, this.props.credential.ownedUsers, credentialID)}
+                    {this.isIdValid(user._id, this.props.auth.user._id)}
 
                   </div>
                 );

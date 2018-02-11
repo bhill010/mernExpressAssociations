@@ -21,7 +21,9 @@ class New extends Component {
     var url_array = full_url.split("/");
     var last_segment = url_array[url_array.length - 3];
 
-    this.props.createUser(event.target.querySelector(".form__input").value, last_segment);
+    var ownerID = this.props.auth.user._id;
+
+    this.props.createUser(event.target.querySelector(".form__input").value, last_segment, ownerID);
     this.props.fetchUsers();
     this.props.fetchCredentialUsers(this.props.auth.user._id);
     setTimeout(() => {

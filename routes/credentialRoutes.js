@@ -90,6 +90,7 @@ module.exports = app => {
 
   // CREDENTIAL SHOW "DASHBOARD"
   app.get("/api/credential/:id", function(req, res) {
+    console.log("credential show action received");
     Credential.findById(req.params.id, function(err, foundCredential) {
       if (err) {
         res.redirect("/users");

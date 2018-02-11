@@ -34,11 +34,12 @@ export const fetchUser = id => {
   };
 };
 
-export const createUser = (username, id) => {
+export const createUser = (username, id, ownerID) => {
   // console.log("data passed to action creator...");
   // console.log("username: ", username);
   // console.log("id: ", id);
   return dispatch => {
+    console.log("create request: ", `/api/credential/${id}/users`);
     axios.post(`/api/credential/${id}/users`, { username }).then(response => {
       console.log("create user action data: ", response.data);
       dispatch({ type: CREATE_USER, payload: response.data });
@@ -110,9 +111,10 @@ export const logout = cb => {
 
 // CREDENTIALS
 export const fetchCredentialUsers = id => {
+  console.log("credential request sent:", `/api/credential/${id}`);
   return dispatch => {
     axios.get(`/api/credential/${id}`).then(response => {
-      // console.log("credential response data: ", response.data);
+      console.log("credential response data: ", response.data);
       let ownedUsers = response.data;
 
       dispatch({ type: FETCH_CREDENTIAL_USERS, payload: ownedUsers });

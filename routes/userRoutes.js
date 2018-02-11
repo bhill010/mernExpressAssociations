@@ -20,14 +20,19 @@ module.exports = app => {
 
   // CREATE new user
   app.post("/api/credential/:id/users", function(req, res, next) {
+    console.log("hiii");
     Credential.findById(req.params.id, function(err, credential) {
       if(err) {
         console.log(err);
       } else {
         const username = req.body.username;
+        const owner = {
+          id: req.body.ownerID
+        }
 
         const user = new User({
-          username: username
+          username: username,
+          owner: owner
         });
 
         User.create(user, function(err, newUser) {
