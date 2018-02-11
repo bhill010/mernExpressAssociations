@@ -28,7 +28,7 @@ export const fetchUser = id => {
   return dispatch => {
     axios.get(`/api/users/${id}`).then(response => {
       let user = response.data;
-
+      console.log("fetch user action data: ", user);
       dispatch({ type: FETCH_USER, payload: user });
     });
   };

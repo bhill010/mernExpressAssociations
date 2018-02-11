@@ -23,7 +23,7 @@ class Show extends Component {
 
   deleteIndexReturn(event) {
     event.preventDefault();
-    this.props.deleteUser(this.props.users._id);
+    this.props.deleteUser(this.props.users.users._id);
     this.props.fetchUsers();
     this.props.history.push("/users");
   }
@@ -38,22 +38,24 @@ class Show extends Component {
   }
 
   render() {
-    if (!this.props.users || !this.props.users.username) {
+    console.log("this.props.users: ", this.props.users);
+    console.log("this.props.users.username: ", this.props.users.users.username);
+    if (!this.props.users || !this.props.users.users.username) {
       return <div>Loading</div>;
     }
     let credentialID = this.props.auth.user._id;
 
     return (
       <div>
-        <h2>Profile page for: {this.props.users.username}</h2>
+        <h2>Profile page for: {this.props.users.users.username}</h2>
         <p className="input-group-text show-info">
-          User ID: {this.props.users._id}
+          User ID: {this.props.users.users._id}
         </p>
         <div className="show-btn-container">
           <div className="show-btn__div">
             <Link
               className="btn btn-info show-link"
-              to={`/credential/${credentialID}/users/${this.props.users._id}/edit`}
+              to={`/credential/${credentialID}/users/${this.props.users.users._id}/edit`}
             >
               PUT
             </Link>
