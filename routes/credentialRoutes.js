@@ -90,7 +90,7 @@ module.exports = app => {
 
   // CREDENTIAL SHOW "DASHBOARD"
   app.get("/api/credential/:id", function(req, res) {
-    console.log("credential show action received");
+    // console.log("credential show action received");
     Credential.findById(req.params.id, function(err, foundCredential) {
       if (err) {
         res.redirect("/users");
@@ -99,18 +99,18 @@ module.exports = app => {
           var foundUsers = [];
           for(let i = 0; i < foundCredential.users.length; i++) {
             var currentID = foundCredential.users[i];
-            console.log("currentID: ", currentID);
+            // console.log("currentID: ", currentID);
             var addedUser = await User.findById(currentID, function(err, foundUser) {
               if(err) {
                 console.log(err);
               } else {
-                console.log("foundUser :", foundUser);
+                // console.log("foundUser :", foundUser);
                 return foundUser;
               }
             });
             foundUsers.push(addedUser)
           }
-          console.log("foundUsers complete: ", foundUsers);
+          // console.log("foundUsers complete: ", foundUsers);
           res.send(foundUsers);
         }
         retrieveOwnedUsers();

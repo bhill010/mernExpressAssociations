@@ -50,12 +50,12 @@ class Users extends Component {
   //   this.setState({ credential: this.props.credential})
   // }
 
-  isIdValid(userID, ownerID) {
+  isIdValid(userOwnerID, ownerID) {
     // console.log("IS ID VALID TRIGGERED");
     // console.log("ownerIDArray length", ownerIDArray.length);
-    console.log("userID", userID);
+    console.log("userOwnerID", userOwnerID);
     console.log("ownerID", ownerID);
-    if (userID == ownerID) {
+    if (userOwnerID == ownerID) {
 
 
     // if (ownerIDArray.indexOf(userID) !== -1) {
@@ -66,7 +66,7 @@ class Users extends Component {
           <div className="auth__button">
             <Link
               className="btn btn-info btn-flex"
-              to={`/users/${userID}`}
+              to={`/users/${userOwnerID}`}
             >
               SHOW
             </Link>
@@ -74,7 +74,7 @@ class Users extends Component {
           <div className="auth__button">
             <button
               className="btn btn-danger btn-flex"
-              onClick={this.deleteIndexReturn(userID, ownerID)}
+              onClick={this.deleteIndexReturn(userOwnerID, ownerID)}
             >
               DELETE
             </button>
@@ -154,7 +154,7 @@ class Users extends Component {
                     <li className="list-group-item users__list-item">
                       {user.username}
                     </li>
-                    {this.isIdValid(user._id, this.props.auth.user._id)}
+                    {this.isIdValid(user.owner.id, this.props.auth.user._id)}
 
                   </div>
                 );

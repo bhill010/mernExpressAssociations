@@ -25,7 +25,7 @@ let store = compose(
   autoRehydrate()
 )(createStore)(reducers);
 
-persistStore(store)
+persistStore(store, { whitelist: ['auth']})
 
 // store.subscribe(() => {
 //   saveState(store.getState());

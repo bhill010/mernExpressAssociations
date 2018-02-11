@@ -7,7 +7,7 @@ const Credential = require("../models/credential");
 module.exports = app => {
   // GET users
   app.get("/api/users", function(req, res, next) {
-    console.log("/users req.user", req.user);
+    // console.log("/users req.user", req.user);
     User.find({}, function(err, allUsers) {
       if (err) {
         console.log(err);
@@ -20,20 +20,24 @@ module.exports = app => {
 
   // CREATE new user
   app.post("/api/credential/:id/users", function(req, res, next) {
-    console.log("hiii");
     Credential.findById(req.params.id, function(err, credential) {
       if(err) {
         console.log(err);
       } else {
+        console.log("CREATE REQUEST BODY:", req.body);
         const username = req.body.username;
         const owner = {
           id: req.body.ownerID
         }
 
+        console.log("owner data :", owner);
+
         const user = new User({
           username: username,
           owner: owner
         });
+
+        console.log("user data to create: ", user);
 
         User.create(user, function(err, newUser) {
           if (err) {
@@ -42,6 +46,7 @@ module.exports = app => {
             console.log("credential.users", credential.users);
             credential.users.push(newUser);
             credential.save();
+            console.log("CREATED USER BACKEND: ", newUser);
             res.send(newUser);
           }
         });

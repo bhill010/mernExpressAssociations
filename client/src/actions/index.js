@@ -40,7 +40,7 @@ export const createUser = (username, id, ownerID) => {
   // console.log("id: ", id);
   return dispatch => {
     console.log("create request: ", `/api/credential/${id}/users`);
-    axios.post(`/api/credential/${id}/users`, { username }).then(response => {
+    axios.post(`/api/credential/${id}/users`, { username, ownerID }).then(response => {
       console.log("create user action data: ", response.data);
       dispatch({ type: CREATE_USER, payload: response.data });
     });
