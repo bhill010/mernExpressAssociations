@@ -41,7 +41,7 @@ class Show extends Component {
 
     return (
       <div className="center_container">
-        <h2>{this.props.users.users.username}'s SHOW Page</h2>
+        <h3>{this.props.users.users.username}'s SHOW Page</h3>
         <p className="input-group-text show-info">
           User ID: {this.props.users.users._id}
         </p>

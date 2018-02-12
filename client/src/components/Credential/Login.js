@@ -54,13 +54,13 @@ class Login extends Component {
         <div>{this.errorHandler()}</div>
         <form className="form" onSubmit={this.onSubmit}>
           <input
-            className="form-control form__input form__username"
+            className="form-control form__input form__username right_margin"
             type="text"
             name="username"
             placeholder="name"
           />
           <input
-            className="form-control form__input form__password"
+            className="form-control form__input form__password right_margin"
             type="password"
             name="password"
             placeholder="password"

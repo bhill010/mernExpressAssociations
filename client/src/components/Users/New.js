@@ -35,18 +35,19 @@ class New extends Component {
 
   render() {
     return (
-      <div className="form__container">
+      <div className="center_container">
+        <h3>CREATE New User</h3>
         <form className="form" onSubmit={this.onSubmit}>
           <input
-            className="form-control form__input"
+            className="form-control form__input right_margin"
             type="text"
             name="username"
-            placeholder="name"
+            placeholder="Name of new user"
           />
           <input className="btn btn-primary form__submit" type="submit" />
         </form>
         <div>
-          <Link className="btn btn-success btn-bottom" to="/">
+          <Link className="btn btn-success btn-bottom top_margin" to="/">
             Return to /users
           </Link>
         </div>

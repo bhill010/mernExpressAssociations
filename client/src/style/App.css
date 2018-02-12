@@ -37,6 +37,7 @@ body {
   align-items: center;
   background-color: #f2f2f2;
   overflow: overlay;
+  border-radius: 5px;
 }
 
 .route-container {
@@ -55,14 +56,6 @@ body {
   display: flex;
 }
 
-.form__input {
-  flex-basis: 80%;
-}
-
-.form__submit {
-  flex-basis: 20%;
-}
-
 .center_container {
   display: flex;
   flex-direction: column;
@@ -73,4 +66,8 @@ body {
 
 .top_margin {
   margin-top: 10px;
+}
+
+.right_margin {
+  margin-right: 10px;
 }

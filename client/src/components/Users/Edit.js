@@ -44,7 +44,7 @@ class Edit extends Component {
         <h3>Edit Page</h3>
         <form className="form" onSubmit={this.onSubmit}>
           <input
-            className="form-control form__input"
+            className="form-control form__input right_margin"
             type="text"
             name="username"
             placeholder="Update user's name"
