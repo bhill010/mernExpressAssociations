@@ -36,9 +36,9 @@ export default function(state = defaultState, action) {
       return newState;
     case UPDATE_USER:
       newState = _.merge({}, state);
-      for (var key in newState) {
-        if (newState[key]._id === action.payload._id) {
-          newState[key] = action.payload;
+      for(var i = 0; i < newState.users.length; i++) {
+        if(newState.users[i]._id === action.payload._id) {
+          newState.users[i] = action.payload;
         }
       }
       return newState;
