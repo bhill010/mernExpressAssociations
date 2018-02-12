@@ -42,6 +42,7 @@ body {
 .route-container {
   top: 20%;
   width: 600px;
+  padding-bottom: 30px;
 }
 
 .form__container {

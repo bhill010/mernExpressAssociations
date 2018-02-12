@@ -1,13 +1,4 @@
-const defaultState = {
-  users: [],
-  auth: {
-    user: {},
-    loggedIn: false,
-    errorMessage: ""
-  }
-}
-
-export default function(state = defaultState, action) {
+export default function(state = {}, action) {
   Object.freeze(state);
   switch (action.type) {
     case 'persist/REHYDRATE':

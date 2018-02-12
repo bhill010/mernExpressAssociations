@@ -52,7 +52,9 @@ module.exports = app => {
   app.delete("/api/credential/:id/users/:user_id", function(req, res) {
     User.findByIdAndRemove(req.params.user_id, function(err, foundUser) {
       if (err) {
-        res.redirect("/users");
+        console.log(err);
+        res.status(500).send(err);
+        // res.redirect("/users");
       } else {
         res.send(foundUser);
       }

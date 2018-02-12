@@ -59,8 +59,8 @@ export default function(state = defaultState, action) {
         }
       }
       return newState;
-    case 'persist/REHYDRATE':
-        return { ...state, persistedState: action.payload };
+    // case 'persist/REHYDRATE':
+    //     return { ...state, persistedState: action.payload };
     default:
       return state;
   }
