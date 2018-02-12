@@ -60,11 +60,12 @@ class CredentialShow extends Component {
     console.log("owned users: ", this.props.credential);
     // let filteredUsers = this.props.credential.ownedUsers.filter(x => x);
     console.log("this.props.users :", this.props.users);
+    // console.log("this.props.auth.username: ", this.props.auth.)
     let filteredUsers = this.props.users.users.filter(x => x);
     return (
       <div className="dashboard-container">
         <h1 className="component-header">
-          Dashboard
+          {this.props.auth.user.username}'s Dashboard
         </h1>
         <h3>Your list of created users:</h3>
         <ul className="list-group list-group-dashboard">

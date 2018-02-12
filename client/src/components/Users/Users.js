@@ -15,10 +15,10 @@ class Users extends Component {
     this.isIdValid = this.isIdValid.bind(this);
   }
 
-  deleteIndexReturn(id, credentialID) {
+  deleteIndexReturn(user, id, credentialID) {
     return event => {
       event.preventDefault();
-      this.props.deleteUser(id, credentialID);
+      this.props.deleteUser(user._id, credentialID);
       setTimeout(() => {
         this.props.fetchUsers();
         this.props.history.push("/users");
