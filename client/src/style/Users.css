@@ -1,17 +1,32 @@
+.users-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .users__list-item {
   list-style: none;
   margin: 5px;
-  flex-basis: 290px;
+  width: 200px;
+}
+
+.users-list-group {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .list-group-item-container {
   display: flex;
-  flex-basis: 100%;
+  /*flex-basis: 100%;*/
   align-items: center;
 }
 
 .user__number {
-  flex-basis: 100px;
+  width: 100px;
   background-color: #d5d5d5;
 }
 
@@ -34,4 +49,8 @@
 .users__button-container {
   display: flex;
   flex-basis: 30%;
+}
+
+.create-button {
+  width: 500px;
 }

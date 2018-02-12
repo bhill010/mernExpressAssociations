@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 
 import "../../style/Users.css";
+import "../../style/App.css";
 
 class Users extends Component {
   constructor(props) {
@@ -101,9 +102,9 @@ class Users extends Component {
       let filteredUsers = this.props.users.users.filter(x => x);
       console.log("filteredUsers", filteredUsers);
       return (
-        <div>
+        <div className="users-container">
           <h1 className="users-header">Users</h1>
-          <ul className="list-group">
+          <ul className="list-group users-list-group">
             {_.map(filteredUsers, (user, idx) => {
               return (
                 <div className="list-group-item-container" key={idx}>
@@ -140,9 +141,9 @@ class Users extends Component {
 
 
       return (
-          <div>
+          <div className="users-container">
             <h1 className="users-header">Users</h1>
-            <ul className="list-group">
+            <ul className="list-group users-list-group">
               {_.map(filteredUsers, (user, idx) => {
                 // console.log("mapping is happening");
                 console.log("filtered user: ", user);
@@ -161,7 +162,7 @@ class Users extends Component {
               })}
             </ul>
             <div className="auth__button">
-              <Link className="btn btn-success btn-bottom" to={`/credential/${credentialID}/users/new`}>
+              <Link className="btn btn-success btn-bottom create-button" to={`/credential/${credentialID}/users/new`}>
                 CREATE
               </Link>
             </div>
