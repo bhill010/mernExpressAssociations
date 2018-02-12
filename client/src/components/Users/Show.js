@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { fetchUser, deleteUser, fetchUsers } from "../../actions";
 import { connect } from "react-redux";
 
 import "../../style/Show.css";
 
 class Show extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     var full_url = document.URL;
     var url_array = full_url.split("/");

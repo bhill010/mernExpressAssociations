@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createUser, fetchUsers, fetchCredentialUsers } from "../../actions";
+import { createUser, fetchUsers } from "../../actions";
 
 import "../../style/New.css";
 import "../../style/App.css";

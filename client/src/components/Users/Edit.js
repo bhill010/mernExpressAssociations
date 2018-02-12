@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import { updateUser, fetchUsers } from "../../actions";
 import { connect } from "react-redux";
 

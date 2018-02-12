@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
 
@@ -13,10 +12,6 @@ class CredentialShow extends Component {
     super(props);
 
     this.showIndexReturn = this.showIndexReturn.bind(this);
-  }
-
-  componentDidMount() {
-    let credentialID = this.props.auth.user._id;
   }
 
   showIndexReturn(event) {

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 import { fetchUsers, deleteUser } from "../../actions";
 import { connect } from "react-redux";
-import axios from "axios";
 
 import "../../style/Users.css";
 import "../../style/App.css";
@@ -25,12 +24,6 @@ class Users extends Component {
         this.props.history.push("/users");
       }, 500);
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      let credentialID = this.props.auth.user._id;
-    }
   }
 
   isIdValid(user, userOwnerID, ownerID) {

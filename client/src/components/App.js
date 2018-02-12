@@ -16,10 +16,6 @@ import CredentialShow from "./Credential/Show";
 import "../style/App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchUsers();
   }

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { login, logout, fetchUsers, clearLoginErrors } from "../../actions";
 
-import axios from "axios";
-
 import "../../style/App.css";
 
 class Login extends Component {

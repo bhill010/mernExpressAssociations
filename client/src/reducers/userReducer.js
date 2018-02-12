@@ -14,16 +14,17 @@ const defaultState = {
 
 export default function(state = defaultState, action) {
   Object.freeze(state);
+  let newState;
   switch (action.type) {
     case FETCH_USERS:
-      var newState = _.merge({}, state, { users: action.payload });
+      newState = _.merge({}, state, { users: action.payload });
       return newState;
     case FETCH_USER:
-      var newState = _.merge({}, state, { users: action.payload });
+      newState = _.merge({}, state, { users: action.payload });
       return newState;
     case DELETE_USER:
       var payload = action.payload;
-      var newState = {
+      newState = {
         ...state,
         users: state.users.filter(user => user._id !== payload._id)
       };

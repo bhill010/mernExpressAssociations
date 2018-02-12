@@ -28,6 +28,7 @@ class Header extends Component {
               <a
                 className="btn btn-primary header__button"
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://github.com/bhill010/mernExpressAssociations"
               >
                 Github
@@ -53,6 +54,7 @@ class Header extends Component {
               <a
                 className="btn btn-primary header__button"
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://github.com/bhill010/mernExpressAssociations"
               >
                 Github
