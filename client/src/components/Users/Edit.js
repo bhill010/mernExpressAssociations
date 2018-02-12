@@ -40,18 +40,19 @@ class Edit extends Component {
 
   render() {
     return (
-      <div className="form__container">
+      <div className="center_container">
+        <h3>Edit Page</h3>
         <form className="form" onSubmit={this.onSubmit}>
           <input
             className="form-control form__input"
             type="text"
             name="username"
-            placeholder="name"
+            placeholder="Update user's name"
           />
           <input className="btn btn-primary form__submit" type="submit" />
         </form>
         <div>
-          <button className="btn btn-success" onClick={this.showIndexReturn}>
+          <button className="btn btn-success top_margin" onClick={this.showIndexReturn}>
             RETURN TO /USERS
           </button>
         </div>

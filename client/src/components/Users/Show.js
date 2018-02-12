@@ -4,6 +4,7 @@ import { fetchUser, deleteUser, fetchUsers } from "../../actions";
 import { connect } from "react-redux";
 
 import "../../style/Show.css";
+import "../../style/App.css";
 
 class Show extends Component {
   componentDidMount() {
@@ -39,8 +40,8 @@ class Show extends Component {
     let credentialID = this.props.auth.user._id;
 
     return (
-      <div>
-        <h2>Profile page for: {this.props.users.users.username}</h2>
+      <div className="center_container">
+        <h2>{this.props.users.users.username}'s SHOW Page</h2>
         <p className="input-group-text show-info">
           User ID: {this.props.users.users._id}
         </p>
@@ -65,7 +66,7 @@ class Show extends Component {
           </div>
         </div>
         <div>
-          <button className="btn btn-success" onClick={this.showIndexReturn}>
+          <button className="btn btn-success top_margin" onClick={this.showIndexReturn}>
             Return to /users
           </button>
         </div>
