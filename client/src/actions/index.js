@@ -10,7 +10,7 @@ import {
   LOGIN,
   LOGIN_FAILED,
   LOGOUT,
-  CLEAR_LOGIN_ERRORS
+  CLEAR_AUTH_ERRORS
 } from "./types";
 
 export const fetchUsers = () => {
@@ -91,9 +91,9 @@ export const login = (username, password, cb) => {
   };
 };
 
-export const clearLoginErrors = () => {
+export const clearAuthErrors = () => {
   return dispatch => {
-    dispatch({ type: CLEAR_LOGIN_ERRORS });
+    dispatch({ type: CLEAR_AUTH_ERRORS });
   };
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { login, logout, fetchUsers, clearLoginErrors } from "../../actions";
+import { login, logout, fetchUsers, clearAuthErrors } from "../../actions";
 
 import "../../style/App.css";
 
@@ -15,7 +15,7 @@ class Login extends Component {
   }
 
   componentWillUnmount() {
-    this.props.clearLoginErrors();
+    this.props.clearAuthErrors();
   }
 
   onSubmit(event) {
@@ -83,5 +83,5 @@ export default connect(mapStateToProps, {
   login,
   logout,
   fetchUsers,
-  clearLoginErrors
+  clearAuthErrors
 })(Login);

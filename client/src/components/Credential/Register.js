@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { register } from "../../actions";
+import { register, clearLoginErrors, clearAuthErrors } from "../../actions";
 
 import "../../style/App.css";
 
@@ -11,6 +11,10 @@ class Register extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.errorHandler = this.errorHandler.bind(this);
+  }
+
+  componentWillUnmount() {
+    this.props.clearAuthErrors();
   }
 
   onSubmit(event) {
@@ -27,6 +31,9 @@ class Register extends Component {
     var error = "";
     if (this.props.auth.errorMessage.message) {
       error = this.props.auth.errorMessage.message;
+      return error;
+    } else if (this.props.auth.errorMessage) {
+      error = this.props.auth.errorMessage;
     }
 
     return error;
@@ -64,4 +71,4 @@ function mapStateToProps(state) {
   return { auth: state.auth };
 }
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { register, clearAuthErrors })(Register);

@@ -4,7 +4,7 @@ import {
   LOGIN,
   LOGIN_FAILED,
   LOGOUT,
-  CLEAR_LOGIN_ERRORS
+  CLEAR_AUTH_ERRORS
 } from "../actions/types";
 
 import _ from "lodash";
@@ -44,7 +44,7 @@ export default function(state = defaultState, action) {
       });
     case LOGOUT:
       return _.merge({}, state, defaultState);
-    case CLEAR_LOGIN_ERRORS:
+    case CLEAR_AUTH_ERRORS:
       return _.merge({}, state, {
         errorMessage: ""
       });
