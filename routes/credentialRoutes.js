@@ -45,7 +45,6 @@ module.exports = app => {
   app.get("/api/logout", function(req, res) {
     req.logout();
     res.send("Complete")
-    // res.redirect("/users");
   });
 
   // DELETE a user
@@ -54,7 +53,6 @@ module.exports = app => {
       if (err) {
         console.log(err);
         res.status(500).send(err);
-        // res.redirect("/users");
       } else {
         res.send(foundUser);
       }
@@ -66,19 +64,11 @@ module.exports = app => {
       } else {
         var index;
         for(var i = 0; i < credential.users.length; i++) {
-          // console.log("credential users length", credential.users.length);
-          // console.log("credential users i", credential.users[i]);
-          // console.log("req.params.user_id", req.params.user_id);
           if(credential.users[i] == req.params.user_id) {
             index = i;
           }
         }
-        // console.log("found index", index);
-        // console.log("foundIndex :", foundIndex);
-        // let index = credential.users.findIndex(req.params.user_id);
-        // console.log("length before splice:", credential.users.length);
         credential.users.splice(index, 1)
-        // console.log("length after splice:", credential.users.length);
         credential.save(function(err) {
           if(err) {
             console.log(err);
@@ -92,7 +82,6 @@ module.exports = app => {
 
   // CREDENTIAL SHOW "DASHBOARD"
   app.get("/api/credential/:id", function(req, res) {
-    // console.log("credential show action received");
     Credential.findById(req.params.id, function(err, foundCredential) {
       if (err) {
         res.redirect("/users");
@@ -101,18 +90,15 @@ module.exports = app => {
           var foundUsers = [];
           for(let i = 0; i < foundCredential.users.length; i++) {
             var currentID = foundCredential.users[i];
-            // console.log("currentID: ", currentID);
             var addedUser = await User.findById(currentID, function(err, foundUser) {
               if(err) {
                 console.log(err);
               } else {
-                // console.log("foundUser :", foundUser);
                 return foundUser;
               }
             });
             foundUsers.push(addedUser)
           }
-          // console.log("foundUsers complete: ", foundUsers);
           res.send(foundUsers);
         }
         retrieveOwnedUsers();

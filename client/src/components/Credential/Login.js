@@ -39,9 +39,7 @@ class Login extends Component {
 
   errorHandler() {
     var error = "";
-    // console.log(this.props.auth);
     if (this.props.auth.errorMessage.message) {
-      // console.log("login error: ", this.props.auth.errorMessage.message);
       error = this.props.auth.errorMessage.message;
       return error;
     } else if (this.props.auth.errorMessage) {
@@ -83,4 +81,9 @@ function mapStateToProps(state) {
   return { auth: state.auth };
 }
 
-export default connect(mapStateToProps, { login, logout, fetchUsers, clearLoginErrors })(Login);
+export default connect(mapStateToProps, {
+  login,
+  logout,
+  fetchUsers,
+  clearLoginErrors
+})(Login);

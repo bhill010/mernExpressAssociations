@@ -10,15 +10,13 @@ import {
   LOGIN,
   LOGIN_FAILED,
   LOGOUT,
-  CLEAR_LOGIN_ERRORS,
-  FETCH_CREDENTIAL_USERS
+  CLEAR_LOGIN_ERRORS
 } from "./types";
 
 export const fetchUsers = () => {
   return dispatch => {
     axios.get("/api/users").then(response => {
       let users = response.data;
-      console.log("fetchusers action data: ", users);
       dispatch({ type: FETCH_USERS, payload: users });
     });
   };
@@ -26,42 +24,40 @@ export const fetchUsers = () => {
 
 export const fetchUser = id => {
   return dispatch => {
-    console.log("fetch user REQUEST: ", `/api/users/${id}`);
     axios.get(`/api/users/${id}`).then(response => {
       let user = response.data;
-      console.log("fetch user action data: ", user);
       dispatch({ type: FETCH_USER, payload: user });
     });
   };
 };
 
 export const createUser = (username, id, ownerID) => {
-  // console.log("data passed to action creator...");
-  // console.log("username: ", username);
-  // console.log("id: ", id);
   return dispatch => {
-    console.log("create request: ", `/api/credential/${id}/users`);
-    axios.post(`/api/credential/${id}/users`, { username, ownerID }).then(response => {
-      console.log("create user action data: ", response.data);
-      dispatch({ type: CREATE_USER, payload: response.data });
-    });
+    axios
+      .post(`/api/credential/${id}/users`, { username, ownerID })
+      .then(response => {
+        dispatch({ type: CREATE_USER, payload: response.data });
+      });
   };
 };
 
 export const deleteUser = (id, credentialID) => {
   return dispatch => {
-    axios.delete(`/api/credential/${credentialID}/users/${id}`).then(response => {
-      // console.log("deleteusers action data: ", response.data);
-      dispatch({ type: DELETE_USER, payload: response.data });
-    });
+    axios
+      .delete(`/api/credential/${credentialID}/users/${id}`)
+      .then(response => {
+        dispatch({ type: DELETE_USER, payload: response.data });
+      });
   };
 };
 
 export const updateUser = (id, credentialID, username, cb = null) => {
   return dispatch => {
-    axios.put(`/api/credential/${credentialID}/users/${id}`, { username }).then(response => {
-      dispatch({ type: UPDATE_USER, payload: response.data });
-    });
+    axios
+      .put(`/api/credential/${credentialID}/users/${id}`, { username })
+      .then(response => {
+        dispatch({ type: UPDATE_USER, payload: response.data });
+      });
   };
 };
 
@@ -98,27 +94,14 @@ export const login = (username, password, cb) => {
 export const clearLoginErrors = () => {
   return dispatch => {
     dispatch({ type: CLEAR_LOGIN_ERRORS });
-  }
-}
+  };
+};
 
 export const logout = cb => {
   return dispatch => {
     axios.get("/api/logout").then(response => {
       dispatch({ type: LOGOUT, payload: response.data });
       cb("/users");
-    });
-  };
-};
-
-// CREDENTIALS
-export const fetchCredentialUsers = id => {
-  console.log("credential request sent:", `/api/credential/${id}`);
-  return dispatch => {
-    axios.get(`/api/credential/${id}`).then(response => {
-      console.log("credential response data: ", response.data);
-      let ownedUsers = response.data;
-
-      dispatch({ type: FETCH_CREDENTIAL_USERS, payload: ownedUsers });
     });
   };
 };

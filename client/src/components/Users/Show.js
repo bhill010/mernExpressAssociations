@@ -38,8 +38,6 @@ class Show extends Component {
   }
 
   render() {
-    console.log("this.props.users: ", this.props.users);
-    console.log("this.props.users.username: ", this.props.users.users.username);
     if (!this.props.users || !this.props.users.users.username) {
       return <div>Loading</div>;
     }
@@ -55,7 +53,9 @@ class Show extends Component {
           <div className="show-btn__div">
             <Link
               className="btn btn-info show-link"
-              to={`/credential/${credentialID}/users/${this.props.users.users._id}/edit`}
+              to={`/credential/${credentialID}/users/${
+                this.props.users.users._id
+              }/edit`}
             >
               PUT
             </Link>

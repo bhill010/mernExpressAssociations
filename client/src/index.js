@@ -5,20 +5,8 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import { autoRehydrate, persistStore } from 'redux-persist';
 import reduxThunk from "redux-thunk";
-// import { loadState, saveState } from './localStorage';
-
-//
-// import registerServiceWorker from './registerServiceWorker';
 
 import reducers from "./reducers";
-
-// const persistedState = loadState();
-
-// const store = createStore(
-//   reducers,
-//   {},
-//   applyMiddleware(reduxThunk)
-// );
 
 let store = compose(
   applyMiddleware(reduxThunk),
@@ -26,10 +14,6 @@ let store = compose(
 )(createStore)(reducers);
 
 persistStore(store, { whitelist: ['auth']})
-
-// store.subscribe(() => {
-//   saveState(store.getState());
-// });
 
 ReactDOM.render(
   <Provider store={store}>

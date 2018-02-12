@@ -24,7 +24,15 @@ class Header extends Component {
       return (
         <nav className="header">
           <div className="header__first">
-            <span className=""><a className="btn btn-primary header__button" target="_blank" href="https://github.com/bhill010/mernExpressAssociations">Github</a></span>
+            <span className="">
+              <a
+                className="btn btn-primary header__button"
+                target="_blank"
+                href="https://github.com/bhill010/mernExpressAssociations"
+              >
+                Github
+              </a>
+            </span>
           </div>
           <div className="header__second">
             <Link className="btn btn-info header__button" to="/register">
@@ -41,13 +49,27 @@ class Header extends Component {
       return (
         <nav className="header">
           <div className="header__first">
-            <span className=""><a className="btn btn-primary header__button" target="_blank" href="https://github.com/bhill010/mernExpressAssociations">Github</a></span>
+            <span className="">
+              <a
+                className="btn btn-primary header__button"
+                target="_blank"
+                href="https://github.com/bhill010/mernExpressAssociations"
+              >
+                Github
+              </a>
+            </span>
           </div>
           <div className="header__second">
-            <Link className="btn btn-info header__button" to={`/credential/${credentialID}`}>
+            <Link
+              className="btn btn-info header__button"
+              to={`/credential/${credentialID}`}
+            >
               DASHBOARD
             </Link>
-            <button className="btn btn-warning header__button" onClick={this.logout}>
+            <button
+              className="btn btn-warning header__button"
+              onClick={this.logout}
+            >
               LOGOUT
             </button>
           </div>

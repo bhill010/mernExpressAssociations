@@ -12,6 +12,3 @@ export const LOGIN = "login";
 export const LOGIN_FAILED = "login_failed";
 export const LOGOUT = "logout";
 export const CLEAR_LOGIN_ERRORS = "clear_login_errors";
-
-// Credential Reducer
-export const FETCH_CREDENTIAL_USERS = "fetch_owned_users";

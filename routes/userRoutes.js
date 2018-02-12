@@ -7,13 +7,11 @@ const Credential = require("../models/credential");
 module.exports = app => {
   // GET users
   app.get("/api/users", function(req, res, next) {
-    // console.log("/users req.user", req.user);
     User.find({}, function(err, allUsers) {
       if (err) {
         console.log(err);
       } else {
         res.send(allUsers);
-        console.log("/users data", allUsers);
       }
     });
   });
@@ -21,64 +19,39 @@ module.exports = app => {
   // CREATE new user
   app.post("/api/credential/:id/users", function(req, res, next) {
     Credential.findById(req.params.id, function(err, credential) {
-      if(err) {
+      if (err) {
         console.log(err);
       } else {
-        console.log("CREATE REQUEST BODY:", req.body);
         const username = req.body.username;
         const owner = {
           id: req.body.ownerID
-        }
-
-        console.log("owner data :", owner);
+        };
 
         const user = new User({
           username: username,
           owner: owner
         });
 
-        console.log("user data to create: ", user);
-
         User.create(user, function(err, newUser) {
           if (err) {
             console.log(err);
           } else {
-            console.log("credential.users", credential.users);
             credential.users.push(newUser);
             credential.save();
-            console.log("CREATED USER BACKEND: ", newUser);
             res.send(newUser);
           }
         });
       }
-    })
-
-
-    // console.log(req);
-    // const username = req.body.username;
-    //
-    // const user = new User({
-    //   username: username
-    // });
-    //
-    // User.create(user, function(err, newUser) {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     res.send(newUser);
-    //   }
-    // });
+    });
   });
 
   // SHOW a user
   app.get("/api/users/:id", function(req, res) {
-    console.log("show route params id: ", req.params.id);
     User.findById(req.params.id, function(err, foundUser) {
       if (err) {
         console.log(err);
         res.redirect("/users");
       } else {
-        console.log("SHOW user route response: ", foundUser);
         res.send(foundUser);
       }
     });
@@ -135,28 +108,20 @@ module.exports = app => {
         console.log(err);
       } else {
         var index;
-        for(var i = 0; i < credential.users.length; i++) {
-          // console.log("credential users length", credential.users.length);
-          // console.log("credential users i", credential.users[i]);
-          // console.log("req.params.user_id", req.params.user_id);
-          if(credential.users[i] == req.params.user_id) {
+        for (var i = 0; i < credential.users.length; i++) {
+          if (credential.users[i] == req.params.user_id) {
             index = i;
           }
         }
-        // console.log("found index", index);
-        // console.log("foundIndex :", foundIndex);
-        // let index = credential.users.findIndex(req.params.user_id);
-        // console.log("length before splice:", credential.users.length);
-        credential.users.splice(index, 1)
-        // console.log("length after splice:", credential.users.length);
+        credential.users.splice(index, 1);
         credential.save(function(err) {
-          if(err) {
+          if (err) {
             console.log(err);
           } else {
             console.log("credential saved!");
           }
-        })
+        });
       }
-    })
+    });
   });
 };

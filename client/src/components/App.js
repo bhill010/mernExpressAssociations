@@ -36,14 +36,17 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/users" component={Users} />
               <PrivateRoute
-                exact path="/credential/:id/users/new"
+                exact
+                path="/credential/:id/users/new"
                 authed={this.props.auth.loggedIn}
-                component={New} />
+                component={New}
+              />
               />
               <PrivateRoute
                 authed={this.props.auth.loggedIn}
                 path="/credential/:id/users/:user_id/edit"
-                component={Edit} />
+                component={Edit}
+              />
               <PrivateRoute
                 authed={this.props.auth.loggedIn}
                 path="/users/:id"

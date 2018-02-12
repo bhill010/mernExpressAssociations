@@ -7,20 +7,12 @@ import { connect } from "react-redux";
 import "../../style/Edit.css";
 import "../../style/App.css";
 
-//
-
 class Edit extends Component {
   constructor(props) {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
     this.showIndexReturn = this.showIndexReturn.bind(this);
-  }
-
-  componentDidMount() {
-    var full_url = document.URL;
-    var url_array = full_url.split("/");
-    var last_segment = url_array[url_array.length - 2];
   }
 
   showIndexReturn(event) {
@@ -62,13 +54,8 @@ class Edit extends Component {
         </form>
         <div>
           <button className="btn btn-success" onClick={this.showIndexReturn}>
-            TEST RETURN TO /USERS
+            RETURN TO /USERS
           </button>
-        </div>
-        <div>
-          <Link className="btn btn-success btn-bottom" to="/">
-            Return to /users
-          </Link>
         </div>
       </div>
     );

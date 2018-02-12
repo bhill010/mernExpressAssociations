@@ -23,14 +23,17 @@ class New extends Component {
 
     var ownerID = this.props.auth.user._id;
 
-    this.props.createUser(event.target.querySelector(".form__input").value, last_segment, ownerID);
+    this.props.createUser(
+      event.target.querySelector(".form__input").value,
+      last_segment,
+      ownerID
+    );
     this.props.fetchUsers();
-    this.props.fetchCredentialUsers(this.props.auth.user._id);
     setTimeout(() => {
       this.props.history.push("/users");
     }, 1000);
-    // this.props.history.push("/");
   }
+
   render() {
     return (
       <div className="form__container">
@@ -57,4 +60,7 @@ function mapStateToProps(state) {
   return { users: state.users, auth: state.auth };
 }
 
-export default connect(mapStateToProps, { createUser, fetchUsers, fetchCredentialUsers })(New);
+export default connect(mapStateToProps, {
+  createUser,
+  fetchUsers
+})(New);

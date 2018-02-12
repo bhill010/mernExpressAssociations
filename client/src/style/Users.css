@@ -21,7 +21,6 @@
 
 .list-group-item-container {
   display: flex;
-  /*flex-basis: 100%;*/
   align-items: center;
 }
 

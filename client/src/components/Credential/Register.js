@@ -34,7 +34,6 @@ class Register extends Component {
   }
 
   render() {
-    console.log("auth state: ", this.props.auth);
     return (
       <div className="center_container">
         <h3>Register Page</h3>
