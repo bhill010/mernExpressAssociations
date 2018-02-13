@@ -72,6 +72,7 @@ class Users extends Component {
               );
             })}
           </ul>
+          <h2 className="users-bottom-header">Please register or login to begin creating and editing users!</h2>
         </div>
       );
     } else {
