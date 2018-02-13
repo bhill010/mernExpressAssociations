@@ -19,14 +19,6 @@ mongoose.connect(keys.mongoURI);
 const app = express();
 app.use(bodyParser.json());
 
-// app.use((expressSession)({
-//     secret: "Cats and dogs",
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new MongoStore({ mongooseConnection: mongoose.connection })
-//   })
-// );
-
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -46,8 +38,6 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-// passport.serializeUser(Credential.serializeUser());
-// passport.deserializeUser(Credential.deserializeUser());
 
 require("./routes/userRoutes")(app);
 require("./routes/credentialRoutes")(app);
