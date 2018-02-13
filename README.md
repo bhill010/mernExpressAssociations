@@ -1,6 +1,6 @@
 # MERN Fullstack Template
 
-[MERN Fullstack Template](https://mern-express-associations.herokuapp.com/users)
+Live Link: [MERN Fullstack Template](https://mern-express-associations.herokuapp.com/users)
 
 This project is a simple Fullstack app that incorporates React.js/Redux and Node.js.
 The app is very simple -- after registering and logging in, you can create, read, update,
